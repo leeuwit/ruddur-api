@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package vm;
+
+option go_package = "github.com/leeuwit/ruddur/api/vm";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// The cluster service definition.
+service VirtualMachineService {
+  rpc ListVirtualMachineTypes(google.protobuf.Empty) returns (VirtualMachineTypesResponse) {
+    option (google.api.http) = {
+      get: "/v1/vms/types"
+    };
+  };
+  rpc ListVirtualMachineOperatingSystems(google.protobuf.Empty) returns (VirtualMachineOperatingSystemsResponse) {
+    option (google.api.http) = {
+      get: "/v1/vms/operatingsystems"
+    };
+  };
+  rpc ListVirtualMachines(ListVirtualMachinesRequest) returns (ListVirtualMachinesResponse) {
+    option (google.api.http) = {
+      get: "/v1/projects/{project}/vms"
+    };
+  };
+  rpc CreateVirtualMachine(CreateVirtualMachineRequest) returns (CreateVirtualMachineResponse){
+    option (google.api.http) = {
+      post: "/v1/projects/{project}/vms"
+      body: "*"
+    };
+  };
+  rpc DeleteVirtualMachine(DeleteVirtualMachineRequest) returns (DeleteVirtualMachineResponse){
+    option (google.api.http) = {
+      delete: "/v1/projects/{project}/vms/{name}"
+    };
+  };
+  rpc OpenStream(stream Chunk) returns (stream Chunk);
+}
+
+message VirtualMachineTypesResponse {
+  repeated string types = 1;
+}
+
+message VirtualMachineOperatingSystemsResponse {
+  repeated string operatingSystems = 1;
+}
+
+message ListVirtualMachinesResponse {
+  repeated VirtualMachine vms = 1;
+}
+
+message VirtualMachine {
+  string name = 1;
+  string status = 2;
+}
+
+message ListVirtualMachinesRequest {
+  string project = 1;
+}
+
+message CreateVirtualMachineRequest {
+  string project = 1;
+  string name = 2;
+  string operatingSystem = 3;
+  string machineType = 4;
+}
+
+message CreateVirtualMachineResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message DeleteVirtualMachineRequest {
+  string project = 1;
+  string name = 2;
+}
+
+message DeleteVirtualMachineResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message Chunk {
+  bytes chunk = 1;
+}
+
+message SerialStream {
+  string project = 1;
+  string name = 2;
+}
+
+message VncStream {
+  string project = 1;
+  string name = 2;
+}
