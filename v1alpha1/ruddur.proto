@@ -17,12 +17,12 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 
 // The project service definition.
 service Projects {
-  rpc ListProjects(google.protobuf.Empty) returns (ListProjectsResponse) {
+  rpc List(google.protobuf.Empty) returns (ListProjectsResponse) {
     option (google.api.http) = {
       get: "/v1/projects"
     };
   };
-  rpc CreateProject(CreateProjectRequest) returns (google.protobuf.Empty) {
+  rpc Create(CreateProjectRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/v1/projects"
       body: "*"
@@ -64,24 +64,41 @@ message RevokeUserForProjectRequest {
   string user = 2;
 }
 
-// The cluster service definition.
-service Clusters {
-  rpc ListMachineTypes(google.protobuf.Empty) returns (MachineTypesResponse) {
+// The machines service definition.
+service Machines {
+  rpc ListTypes(google.protobuf.Empty) returns (MachineTypesResponse) {
     option (google.api.http) = {
       get: "/v1/machines/types"
     };
   };
-  rpc ListAvailableMachines(google.protobuf.Empty) returns (AvailableMachinesResponse) {
+  rpc ListAvailable(google.protobuf.Empty) returns (AvailableMachinesResponse) {
     option (google.api.http) = {
       get: "/v1/machines/available"
     };
   };
-  rpc ListClusters(ListClustersRequest) returns (ListClustersResponse) {
+}
+
+message MachineTypeAndAmount {
+  string type = 1;
+  int32 amount = 2;
+}
+
+message MachineTypesResponse {
+  repeated string types = 1;
+}
+
+message AvailableMachinesResponse {
+  repeated MachineTypeAndAmount machines = 1;
+}
+
+// The clusters service definition.
+service Clusters {
+  rpc List(ListClustersRequest) returns (ListClustersResponse) {
     option (google.api.http) = {
       get: "/v1/projects/{project}/clusters"
     };
   };
-  rpc CreateCluster(CreateClusterRequest) returns (CreateClusterResponse){
+  rpc Create(CreateClusterRequest) returns (CreateClusterResponse){
     option (google.api.http) = {
       post: "/v1/projects/{project}/clusters"
       body: "*"
@@ -90,7 +107,7 @@ service Clusters {
 
   // TODO: EditCluster (extend / shrink)
 
-  rpc DeleteCluster(DeleteClusterRequest) returns (DeleteClusterResponse){
+  rpc Delete(DeleteClusterRequest) returns (DeleteClusterResponse){
     option (google.api.http) = {
       delete: "/v1/projects/{project}/clusters/{name}"
     };
@@ -100,14 +117,6 @@ service Clusters {
       get: "/v1/projects/{project}/clusters/{name}/kubeconfig"
     };
   };
-}
-
-message MachineTypesResponse {
-  repeated string types = 1;
-}
-
-message AvailableMachinesResponse {
-  repeated MachineTypeAndAmount machines = 1;
 }
 
 message ListClustersResponse {
@@ -147,11 +156,6 @@ message DeleteClusterResponse {
   string message = 2;
 }
 
-message MachineTypeAndAmount {
-  string type = 1;
-  int32 amount = 2;
-}
-
 message KubeconfigRequest {
   string project = 1;
   string name = 2;
@@ -161,30 +165,30 @@ message KubeconfigResponse {
   bytes kubeconfig = 1;
 }
 
-// The virtual machine service definition.
+// The virtual machines service definition.
 service VirtualMachines {
-  rpc ListVirtualMachineTypes(google.protobuf.Empty) returns (VirtualMachineTypesResponse) {
+  rpc ListTypes(google.protobuf.Empty) returns (VirtualMachineTypesResponse) {
     option (google.api.http) = {
       get: "/v1/vms/types"
     };
   };
-  rpc ListVirtualMachineOperatingSystems(google.protobuf.Empty) returns (VirtualMachineOperatingSystemsResponse) {
+  rpc ListOperatingSystems(google.protobuf.Empty) returns (VirtualMachineOperatingSystemsResponse) {
     option (google.api.http) = {
       get: "/v1/vms/operatingsystems"
     };
   };
-  rpc ListVirtualMachines(ListVirtualMachinesRequest) returns (ListVirtualMachinesResponse) {
+  rpc List(ListVirtualMachinesRequest) returns (ListVirtualMachinesResponse) {
     option (google.api.http) = {
       get: "/v1/projects/{project}/vms"
     };
   };
-  rpc CreateVirtualMachine(CreateVirtualMachineRequest) returns (CreateVirtualMachineResponse){
+  rpc Create(CreateVirtualMachineRequest) returns (CreateVirtualMachineResponse){
     option (google.api.http) = {
       post: "/v1/projects/{project}/vms"
       body: "*"
     };
   };
-  rpc DeleteVirtualMachine(DeleteVirtualMachineRequest) returns (DeleteVirtualMachineResponse){
+  rpc Delete(DeleteVirtualMachineRequest) returns (DeleteVirtualMachineResponse){
     option (google.api.http) = {
       delete: "/v1/projects/{project}/vms/{name}"
     };

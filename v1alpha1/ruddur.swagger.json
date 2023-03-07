@@ -9,6 +9,9 @@
       "name": "Projects"
     },
     {
+      "name": "Machines"
+    },
+    {
       "name": "Clusters"
     },
     {
@@ -28,7 +31,7 @@
   "paths": {
     "/v1/machines/available": {
       "get": {
-        "operationId": "Clusters_ListAvailableMachines",
+        "operationId": "Machines_ListAvailable",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -44,13 +47,13 @@
           }
         },
         "tags": [
-          "Clusters"
+          "Machines"
         ]
       }
     },
     "/v1/machines/types": {
       "get": {
-        "operationId": "Clusters_ListMachineTypes",
+        "operationId": "Machines_ListTypes",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -66,13 +69,13 @@
           }
         },
         "tags": [
-          "Clusters"
+          "Machines"
         ]
       }
     },
     "/v1/projects": {
       "get": {
-        "operationId": "Projects_ListProjects",
+        "operationId": "Projects_List",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -92,7 +95,7 @@
         ]
       },
       "post": {
-        "operationId": "Projects_CreateProject",
+        "operationId": "Projects_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -164,7 +167,7 @@
     },
     "/v1/projects/{project}/clusters": {
       "get": {
-        "operationId": "Clusters_ListClusters",
+        "operationId": "Clusters_List",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -192,7 +195,7 @@
         ]
       },
       "post": {
-        "operationId": "Clusters_CreateCluster",
+        "operationId": "Clusters_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -244,7 +247,7 @@
     },
     "/v1/projects/{project}/clusters/{name}": {
       "delete": {
-        "operationId": "Clusters_DeleteCluster",
+        "operationId": "Clusters_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -355,7 +358,7 @@
     },
     "/v1/projects/{project}/vms": {
       "get": {
-        "operationId": "VirtualMachines_ListVirtualMachines",
+        "operationId": "VirtualMachines_List",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -383,7 +386,7 @@
         ]
       },
       "post": {
-        "operationId": "VirtualMachines_CreateVirtualMachine",
+        "operationId": "VirtualMachines_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -432,7 +435,7 @@
     },
     "/v1/projects/{project}/vms/{name}": {
       "delete": {
-        "operationId": "VirtualMachines_DeleteVirtualMachine",
+        "operationId": "VirtualMachines_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -468,7 +471,7 @@
     },
     "/v1/vms/operatingsystems": {
       "get": {
-        "operationId": "VirtualMachines_ListVirtualMachineOperatingSystems",
+        "operationId": "VirtualMachines_ListOperatingSystems",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -490,7 +493,7 @@
     },
     "/v1/vms/types": {
       "get": {
-        "operationId": "VirtualMachines_ListVirtualMachineTypes",
+        "operationId": "VirtualMachines_ListTypes",
         "responses": {
           "200": {
             "description": "A successful response.",

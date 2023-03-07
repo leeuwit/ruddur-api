@@ -19,8 +19,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProjectsClient interface {
-	ListProjects(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListProjectsResponse, error)
-	CreateProject(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListProjectsResponse, error)
+	Create(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AuthorizeUser(ctx context.Context, in *AuthorizeUserForProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RevokeUser(ctx context.Context, in *RevokeUserForProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -33,18 +33,18 @@ func NewProjectsClient(cc grpc.ClientConnInterface) ProjectsClient {
 	return &projectsClient{cc}
 }
 
-func (c *projectsClient) ListProjects(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListProjectsResponse, error) {
+func (c *projectsClient) List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListProjectsResponse, error) {
 	out := new(ListProjectsResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.Projects/ListProjects", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Projects/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *projectsClient) CreateProject(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *projectsClient) Create(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/v1alpha1.Projects/CreateProject", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Projects/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -73,8 +73,8 @@ func (c *projectsClient) RevokeUser(ctx context.Context, in *RevokeUserForProjec
 // All implementations must embed UnimplementedProjectsServer
 // for forward compatibility
 type ProjectsServer interface {
-	ListProjects(context.Context, *emptypb.Empty) (*ListProjectsResponse, error)
-	CreateProject(context.Context, *CreateProjectRequest) (*emptypb.Empty, error)
+	List(context.Context, *emptypb.Empty) (*ListProjectsResponse, error)
+	Create(context.Context, *CreateProjectRequest) (*emptypb.Empty, error)
 	AuthorizeUser(context.Context, *AuthorizeUserForProjectRequest) (*emptypb.Empty, error)
 	RevokeUser(context.Context, *RevokeUserForProjectRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedProjectsServer()
@@ -84,11 +84,11 @@ type ProjectsServer interface {
 type UnimplementedProjectsServer struct {
 }
 
-func (UnimplementedProjectsServer) ListProjects(context.Context, *emptypb.Empty) (*ListProjectsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListProjects not implemented")
+func (UnimplementedProjectsServer) List(context.Context, *emptypb.Empty) (*ListProjectsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedProjectsServer) CreateProject(context.Context, *CreateProjectRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateProject not implemented")
+func (UnimplementedProjectsServer) Create(context.Context, *CreateProjectRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedProjectsServer) AuthorizeUser(context.Context, *AuthorizeUserForProjectRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthorizeUser not implemented")
@@ -109,38 +109,38 @@ func RegisterProjectsServer(s grpc.ServiceRegistrar, srv ProjectsServer) {
 	s.RegisterService(&Projects_ServiceDesc, srv)
 }
 
-func _Projects_ListProjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Projects_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProjectsServer).ListProjects(ctx, in)
+		return srv.(ProjectsServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.Projects/ListProjects",
+		FullMethod: "/v1alpha1.Projects/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectsServer).ListProjects(ctx, req.(*emptypb.Empty))
+		return srv.(ProjectsServer).List(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Projects_CreateProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Projects_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateProjectRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProjectsServer).CreateProject(ctx, in)
+		return srv.(ProjectsServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.Projects/CreateProject",
+		FullMethod: "/v1alpha1.Projects/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectsServer).CreateProject(ctx, req.(*CreateProjectRequest))
+		return srv.(ProjectsServer).Create(ctx, req.(*CreateProjectRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -189,12 +189,12 @@ var Projects_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ProjectsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListProjects",
-			Handler:    _Projects_ListProjects_Handler,
+			MethodName: "List",
+			Handler:    _Projects_List_Handler,
 		},
 		{
-			MethodName: "CreateProject",
-			Handler:    _Projects_CreateProject_Handler,
+			MethodName: "Create",
+			Handler:    _Projects_Create_Handler,
 		},
 		{
 			MethodName: "AuthorizeUser",
@@ -209,15 +209,135 @@ var Projects_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "ruddur.proto",
 }
 
+// MachinesClient is the client API for Machines service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MachinesClient interface {
+	ListTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*MachineTypesResponse, error)
+	ListAvailable(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AvailableMachinesResponse, error)
+}
+
+type machinesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMachinesClient(cc grpc.ClientConnInterface) MachinesClient {
+	return &machinesClient{cc}
+}
+
+func (c *machinesClient) ListTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*MachineTypesResponse, error) {
+	out := new(MachineTypesResponse)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Machines/ListTypes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *machinesClient) ListAvailable(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AvailableMachinesResponse, error) {
+	out := new(AvailableMachinesResponse)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Machines/ListAvailable", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MachinesServer is the server API for Machines service.
+// All implementations must embed UnimplementedMachinesServer
+// for forward compatibility
+type MachinesServer interface {
+	ListTypes(context.Context, *emptypb.Empty) (*MachineTypesResponse, error)
+	ListAvailable(context.Context, *emptypb.Empty) (*AvailableMachinesResponse, error)
+	mustEmbedUnimplementedMachinesServer()
+}
+
+// UnimplementedMachinesServer must be embedded to have forward compatible implementations.
+type UnimplementedMachinesServer struct {
+}
+
+func (UnimplementedMachinesServer) ListTypes(context.Context, *emptypb.Empty) (*MachineTypesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTypes not implemented")
+}
+func (UnimplementedMachinesServer) ListAvailable(context.Context, *emptypb.Empty) (*AvailableMachinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAvailable not implemented")
+}
+func (UnimplementedMachinesServer) mustEmbedUnimplementedMachinesServer() {}
+
+// UnsafeMachinesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MachinesServer will
+// result in compilation errors.
+type UnsafeMachinesServer interface {
+	mustEmbedUnimplementedMachinesServer()
+}
+
+func RegisterMachinesServer(s grpc.ServiceRegistrar, srv MachinesServer) {
+	s.RegisterService(&Machines_ServiceDesc, srv)
+}
+
+func _Machines_ListTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MachinesServer).ListTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1alpha1.Machines/ListTypes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MachinesServer).ListTypes(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Machines_ListAvailable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MachinesServer).ListAvailable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1alpha1.Machines/ListAvailable",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MachinesServer).ListAvailable(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Machines_ServiceDesc is the grpc.ServiceDesc for Machines service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Machines_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "v1alpha1.Machines",
+	HandlerType: (*MachinesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListTypes",
+			Handler:    _Machines_ListTypes_Handler,
+		},
+		{
+			MethodName: "ListAvailable",
+			Handler:    _Machines_ListAvailable_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "ruddur.proto",
+}
+
 // ClustersClient is the client API for Clusters service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ClustersClient interface {
-	ListMachineTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*MachineTypesResponse, error)
-	ListAvailableMachines(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AvailableMachinesResponse, error)
-	ListClusters(ctx context.Context, in *ListClustersRequest, opts ...grpc.CallOption) (*ListClustersResponse, error)
-	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*CreateClusterResponse, error)
-	DeleteCluster(ctx context.Context, in *DeleteClusterRequest, opts ...grpc.CallOption) (*DeleteClusterResponse, error)
+	List(ctx context.Context, in *ListClustersRequest, opts ...grpc.CallOption) (*ListClustersResponse, error)
+	Create(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*CreateClusterResponse, error)
+	Delete(ctx context.Context, in *DeleteClusterRequest, opts ...grpc.CallOption) (*DeleteClusterResponse, error)
 	Kubeconfig(ctx context.Context, in *KubeconfigRequest, opts ...grpc.CallOption) (*KubeconfigResponse, error)
 }
 
@@ -229,45 +349,27 @@ func NewClustersClient(cc grpc.ClientConnInterface) ClustersClient {
 	return &clustersClient{cc}
 }
 
-func (c *clustersClient) ListMachineTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*MachineTypesResponse, error) {
-	out := new(MachineTypesResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/ListMachineTypes", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *clustersClient) ListAvailableMachines(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AvailableMachinesResponse, error) {
-	out := new(AvailableMachinesResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/ListAvailableMachines", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *clustersClient) ListClusters(ctx context.Context, in *ListClustersRequest, opts ...grpc.CallOption) (*ListClustersResponse, error) {
+func (c *clustersClient) List(ctx context.Context, in *ListClustersRequest, opts ...grpc.CallOption) (*ListClustersResponse, error) {
 	out := new(ListClustersResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/ListClusters", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *clustersClient) CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*CreateClusterResponse, error) {
+func (c *clustersClient) Create(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*CreateClusterResponse, error) {
 	out := new(CreateClusterResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/CreateCluster", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *clustersClient) DeleteCluster(ctx context.Context, in *DeleteClusterRequest, opts ...grpc.CallOption) (*DeleteClusterResponse, error) {
+func (c *clustersClient) Delete(ctx context.Context, in *DeleteClusterRequest, opts ...grpc.CallOption) (*DeleteClusterResponse, error) {
 	out := new(DeleteClusterResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/DeleteCluster", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Clusters/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -287,11 +389,9 @@ func (c *clustersClient) Kubeconfig(ctx context.Context, in *KubeconfigRequest, 
 // All implementations must embed UnimplementedClustersServer
 // for forward compatibility
 type ClustersServer interface {
-	ListMachineTypes(context.Context, *emptypb.Empty) (*MachineTypesResponse, error)
-	ListAvailableMachines(context.Context, *emptypb.Empty) (*AvailableMachinesResponse, error)
-	ListClusters(context.Context, *ListClustersRequest) (*ListClustersResponse, error)
-	CreateCluster(context.Context, *CreateClusterRequest) (*CreateClusterResponse, error)
-	DeleteCluster(context.Context, *DeleteClusterRequest) (*DeleteClusterResponse, error)
+	List(context.Context, *ListClustersRequest) (*ListClustersResponse, error)
+	Create(context.Context, *CreateClusterRequest) (*CreateClusterResponse, error)
+	Delete(context.Context, *DeleteClusterRequest) (*DeleteClusterResponse, error)
 	Kubeconfig(context.Context, *KubeconfigRequest) (*KubeconfigResponse, error)
 	mustEmbedUnimplementedClustersServer()
 }
@@ -300,20 +400,14 @@ type ClustersServer interface {
 type UnimplementedClustersServer struct {
 }
 
-func (UnimplementedClustersServer) ListMachineTypes(context.Context, *emptypb.Empty) (*MachineTypesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListMachineTypes not implemented")
+func (UnimplementedClustersServer) List(context.Context, *ListClustersRequest) (*ListClustersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedClustersServer) ListAvailableMachines(context.Context, *emptypb.Empty) (*AvailableMachinesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListAvailableMachines not implemented")
+func (UnimplementedClustersServer) Create(context.Context, *CreateClusterRequest) (*CreateClusterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedClustersServer) ListClusters(context.Context, *ListClustersRequest) (*ListClustersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListClusters not implemented")
-}
-func (UnimplementedClustersServer) CreateCluster(context.Context, *CreateClusterRequest) (*CreateClusterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCluster not implemented")
-}
-func (UnimplementedClustersServer) DeleteCluster(context.Context, *DeleteClusterRequest) (*DeleteClusterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCluster not implemented")
+func (UnimplementedClustersServer) Delete(context.Context, *DeleteClusterRequest) (*DeleteClusterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedClustersServer) Kubeconfig(context.Context, *KubeconfigRequest) (*KubeconfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Kubeconfig not implemented")
@@ -331,92 +425,56 @@ func RegisterClustersServer(s grpc.ServiceRegistrar, srv ClustersServer) {
 	s.RegisterService(&Clusters_ServiceDesc, srv)
 }
 
-func _Clusters_ListMachineTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ClustersServer).ListMachineTypes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/v1alpha1.Clusters/ListMachineTypes",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClustersServer).ListMachineTypes(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Clusters_ListAvailableMachines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ClustersServer).ListAvailableMachines(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/v1alpha1.Clusters/ListAvailableMachines",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClustersServer).ListAvailableMachines(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Clusters_ListClusters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Clusters_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListClustersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ClustersServer).ListClusters(ctx, in)
+		return srv.(ClustersServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.Clusters/ListClusters",
+		FullMethod: "/v1alpha1.Clusters/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClustersServer).ListClusters(ctx, req.(*ListClustersRequest))
+		return srv.(ClustersServer).List(ctx, req.(*ListClustersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Clusters_CreateCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Clusters_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateClusterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ClustersServer).CreateCluster(ctx, in)
+		return srv.(ClustersServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.Clusters/CreateCluster",
+		FullMethod: "/v1alpha1.Clusters/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClustersServer).CreateCluster(ctx, req.(*CreateClusterRequest))
+		return srv.(ClustersServer).Create(ctx, req.(*CreateClusterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Clusters_DeleteCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Clusters_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteClusterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ClustersServer).DeleteCluster(ctx, in)
+		return srv.(ClustersServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.Clusters/DeleteCluster",
+		FullMethod: "/v1alpha1.Clusters/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClustersServer).DeleteCluster(ctx, req.(*DeleteClusterRequest))
+		return srv.(ClustersServer).Delete(ctx, req.(*DeleteClusterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -447,24 +505,16 @@ var Clusters_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ClustersServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListMachineTypes",
-			Handler:    _Clusters_ListMachineTypes_Handler,
+			MethodName: "List",
+			Handler:    _Clusters_List_Handler,
 		},
 		{
-			MethodName: "ListAvailableMachines",
-			Handler:    _Clusters_ListAvailableMachines_Handler,
+			MethodName: "Create",
+			Handler:    _Clusters_Create_Handler,
 		},
 		{
-			MethodName: "ListClusters",
-			Handler:    _Clusters_ListClusters_Handler,
-		},
-		{
-			MethodName: "CreateCluster",
-			Handler:    _Clusters_CreateCluster_Handler,
-		},
-		{
-			MethodName: "DeleteCluster",
-			Handler:    _Clusters_DeleteCluster_Handler,
+			MethodName: "Delete",
+			Handler:    _Clusters_Delete_Handler,
 		},
 		{
 			MethodName: "Kubeconfig",
@@ -479,11 +529,11 @@ var Clusters_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VirtualMachinesClient interface {
-	ListVirtualMachineTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineTypesResponse, error)
-	ListVirtualMachineOperatingSystems(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineOperatingSystemsResponse, error)
-	ListVirtualMachines(ctx context.Context, in *ListVirtualMachinesRequest, opts ...grpc.CallOption) (*ListVirtualMachinesResponse, error)
-	CreateVirtualMachine(ctx context.Context, in *CreateVirtualMachineRequest, opts ...grpc.CallOption) (*CreateVirtualMachineResponse, error)
-	DeleteVirtualMachine(ctx context.Context, in *DeleteVirtualMachineRequest, opts ...grpc.CallOption) (*DeleteVirtualMachineResponse, error)
+	ListTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineTypesResponse, error)
+	ListOperatingSystems(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineOperatingSystemsResponse, error)
+	List(ctx context.Context, in *ListVirtualMachinesRequest, opts ...grpc.CallOption) (*ListVirtualMachinesResponse, error)
+	Create(ctx context.Context, in *CreateVirtualMachineRequest, opts ...grpc.CallOption) (*CreateVirtualMachineResponse, error)
+	Delete(ctx context.Context, in *DeleteVirtualMachineRequest, opts ...grpc.CallOption) (*DeleteVirtualMachineResponse, error)
 	OpenStream(ctx context.Context, opts ...grpc.CallOption) (VirtualMachines_OpenStreamClient, error)
 }
 
@@ -495,45 +545,45 @@ func NewVirtualMachinesClient(cc grpc.ClientConnInterface) VirtualMachinesClient
 	return &virtualMachinesClient{cc}
 }
 
-func (c *virtualMachinesClient) ListVirtualMachineTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineTypesResponse, error) {
+func (c *virtualMachinesClient) ListTypes(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineTypesResponse, error) {
 	out := new(VirtualMachineTypesResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/ListVirtualMachineTypes", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/ListTypes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *virtualMachinesClient) ListVirtualMachineOperatingSystems(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineOperatingSystemsResponse, error) {
+func (c *virtualMachinesClient) ListOperatingSystems(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*VirtualMachineOperatingSystemsResponse, error) {
 	out := new(VirtualMachineOperatingSystemsResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/ListVirtualMachineOperatingSystems", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/ListOperatingSystems", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *virtualMachinesClient) ListVirtualMachines(ctx context.Context, in *ListVirtualMachinesRequest, opts ...grpc.CallOption) (*ListVirtualMachinesResponse, error) {
+func (c *virtualMachinesClient) List(ctx context.Context, in *ListVirtualMachinesRequest, opts ...grpc.CallOption) (*ListVirtualMachinesResponse, error) {
 	out := new(ListVirtualMachinesResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/ListVirtualMachines", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *virtualMachinesClient) CreateVirtualMachine(ctx context.Context, in *CreateVirtualMachineRequest, opts ...grpc.CallOption) (*CreateVirtualMachineResponse, error) {
+func (c *virtualMachinesClient) Create(ctx context.Context, in *CreateVirtualMachineRequest, opts ...grpc.CallOption) (*CreateVirtualMachineResponse, error) {
 	out := new(CreateVirtualMachineResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/CreateVirtualMachine", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *virtualMachinesClient) DeleteVirtualMachine(ctx context.Context, in *DeleteVirtualMachineRequest, opts ...grpc.CallOption) (*DeleteVirtualMachineResponse, error) {
+func (c *virtualMachinesClient) Delete(ctx context.Context, in *DeleteVirtualMachineRequest, opts ...grpc.CallOption) (*DeleteVirtualMachineResponse, error) {
 	out := new(DeleteVirtualMachineResponse)
-	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/DeleteVirtualMachine", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1alpha1.VirtualMachines/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -575,11 +625,11 @@ func (x *virtualMachinesOpenStreamClient) Recv() (*Chunk, error) {
 // All implementations must embed UnimplementedVirtualMachinesServer
 // for forward compatibility
 type VirtualMachinesServer interface {
-	ListVirtualMachineTypes(context.Context, *emptypb.Empty) (*VirtualMachineTypesResponse, error)
-	ListVirtualMachineOperatingSystems(context.Context, *emptypb.Empty) (*VirtualMachineOperatingSystemsResponse, error)
-	ListVirtualMachines(context.Context, *ListVirtualMachinesRequest) (*ListVirtualMachinesResponse, error)
-	CreateVirtualMachine(context.Context, *CreateVirtualMachineRequest) (*CreateVirtualMachineResponse, error)
-	DeleteVirtualMachine(context.Context, *DeleteVirtualMachineRequest) (*DeleteVirtualMachineResponse, error)
+	ListTypes(context.Context, *emptypb.Empty) (*VirtualMachineTypesResponse, error)
+	ListOperatingSystems(context.Context, *emptypb.Empty) (*VirtualMachineOperatingSystemsResponse, error)
+	List(context.Context, *ListVirtualMachinesRequest) (*ListVirtualMachinesResponse, error)
+	Create(context.Context, *CreateVirtualMachineRequest) (*CreateVirtualMachineResponse, error)
+	Delete(context.Context, *DeleteVirtualMachineRequest) (*DeleteVirtualMachineResponse, error)
 	OpenStream(VirtualMachines_OpenStreamServer) error
 	mustEmbedUnimplementedVirtualMachinesServer()
 }
@@ -588,20 +638,20 @@ type VirtualMachinesServer interface {
 type UnimplementedVirtualMachinesServer struct {
 }
 
-func (UnimplementedVirtualMachinesServer) ListVirtualMachineTypes(context.Context, *emptypb.Empty) (*VirtualMachineTypesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListVirtualMachineTypes not implemented")
+func (UnimplementedVirtualMachinesServer) ListTypes(context.Context, *emptypb.Empty) (*VirtualMachineTypesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTypes not implemented")
 }
-func (UnimplementedVirtualMachinesServer) ListVirtualMachineOperatingSystems(context.Context, *emptypb.Empty) (*VirtualMachineOperatingSystemsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListVirtualMachineOperatingSystems not implemented")
+func (UnimplementedVirtualMachinesServer) ListOperatingSystems(context.Context, *emptypb.Empty) (*VirtualMachineOperatingSystemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOperatingSystems not implemented")
 }
-func (UnimplementedVirtualMachinesServer) ListVirtualMachines(context.Context, *ListVirtualMachinesRequest) (*ListVirtualMachinesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListVirtualMachines not implemented")
+func (UnimplementedVirtualMachinesServer) List(context.Context, *ListVirtualMachinesRequest) (*ListVirtualMachinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedVirtualMachinesServer) CreateVirtualMachine(context.Context, *CreateVirtualMachineRequest) (*CreateVirtualMachineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateVirtualMachine not implemented")
+func (UnimplementedVirtualMachinesServer) Create(context.Context, *CreateVirtualMachineRequest) (*CreateVirtualMachineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedVirtualMachinesServer) DeleteVirtualMachine(context.Context, *DeleteVirtualMachineRequest) (*DeleteVirtualMachineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteVirtualMachine not implemented")
+func (UnimplementedVirtualMachinesServer) Delete(context.Context, *DeleteVirtualMachineRequest) (*DeleteVirtualMachineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedVirtualMachinesServer) OpenStream(VirtualMachines_OpenStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method OpenStream not implemented")
@@ -619,92 +669,92 @@ func RegisterVirtualMachinesServer(s grpc.ServiceRegistrar, srv VirtualMachinesS
 	s.RegisterService(&VirtualMachines_ServiceDesc, srv)
 }
 
-func _VirtualMachines_ListVirtualMachineTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VirtualMachines_ListTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VirtualMachinesServer).ListVirtualMachineTypes(ctx, in)
+		return srv.(VirtualMachinesServer).ListTypes(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.VirtualMachines/ListVirtualMachineTypes",
+		FullMethod: "/v1alpha1.VirtualMachines/ListTypes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VirtualMachinesServer).ListVirtualMachineTypes(ctx, req.(*emptypb.Empty))
+		return srv.(VirtualMachinesServer).ListTypes(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VirtualMachines_ListVirtualMachineOperatingSystems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VirtualMachines_ListOperatingSystems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VirtualMachinesServer).ListVirtualMachineOperatingSystems(ctx, in)
+		return srv.(VirtualMachinesServer).ListOperatingSystems(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.VirtualMachines/ListVirtualMachineOperatingSystems",
+		FullMethod: "/v1alpha1.VirtualMachines/ListOperatingSystems",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VirtualMachinesServer).ListVirtualMachineOperatingSystems(ctx, req.(*emptypb.Empty))
+		return srv.(VirtualMachinesServer).ListOperatingSystems(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VirtualMachines_ListVirtualMachines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VirtualMachines_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListVirtualMachinesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VirtualMachinesServer).ListVirtualMachines(ctx, in)
+		return srv.(VirtualMachinesServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.VirtualMachines/ListVirtualMachines",
+		FullMethod: "/v1alpha1.VirtualMachines/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VirtualMachinesServer).ListVirtualMachines(ctx, req.(*ListVirtualMachinesRequest))
+		return srv.(VirtualMachinesServer).List(ctx, req.(*ListVirtualMachinesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VirtualMachines_CreateVirtualMachine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VirtualMachines_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateVirtualMachineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VirtualMachinesServer).CreateVirtualMachine(ctx, in)
+		return srv.(VirtualMachinesServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.VirtualMachines/CreateVirtualMachine",
+		FullMethod: "/v1alpha1.VirtualMachines/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VirtualMachinesServer).CreateVirtualMachine(ctx, req.(*CreateVirtualMachineRequest))
+		return srv.(VirtualMachinesServer).Create(ctx, req.(*CreateVirtualMachineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VirtualMachines_DeleteVirtualMachine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VirtualMachines_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteVirtualMachineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VirtualMachinesServer).DeleteVirtualMachine(ctx, in)
+		return srv.(VirtualMachinesServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1alpha1.VirtualMachines/DeleteVirtualMachine",
+		FullMethod: "/v1alpha1.VirtualMachines/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VirtualMachinesServer).DeleteVirtualMachine(ctx, req.(*DeleteVirtualMachineRequest))
+		return srv.(VirtualMachinesServer).Delete(ctx, req.(*DeleteVirtualMachineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -743,24 +793,24 @@ var VirtualMachines_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*VirtualMachinesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListVirtualMachineTypes",
-			Handler:    _VirtualMachines_ListVirtualMachineTypes_Handler,
+			MethodName: "ListTypes",
+			Handler:    _VirtualMachines_ListTypes_Handler,
 		},
 		{
-			MethodName: "ListVirtualMachineOperatingSystems",
-			Handler:    _VirtualMachines_ListVirtualMachineOperatingSystems_Handler,
+			MethodName: "ListOperatingSystems",
+			Handler:    _VirtualMachines_ListOperatingSystems_Handler,
 		},
 		{
-			MethodName: "ListVirtualMachines",
-			Handler:    _VirtualMachines_ListVirtualMachines_Handler,
+			MethodName: "List",
+			Handler:    _VirtualMachines_List_Handler,
 		},
 		{
-			MethodName: "CreateVirtualMachine",
-			Handler:    _VirtualMachines_CreateVirtualMachine_Handler,
+			MethodName: "Create",
+			Handler:    _VirtualMachines_Create_Handler,
 		},
 		{
-			MethodName: "DeleteVirtualMachine",
-			Handler:    _VirtualMachines_DeleteVirtualMachine_Handler,
+			MethodName: "Delete",
+			Handler:    _VirtualMachines_Delete_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
