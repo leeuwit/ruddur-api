@@ -15,6 +15,10 @@
       "name": "VirtualMachineService"
     }
   ],
+  "host": "cloud.andromeda.leeuwit.nl",
+  "schemes": [
+    "https"
+  ],
   "consumes": [
     "application/json"
   ],

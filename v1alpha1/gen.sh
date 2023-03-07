@@ -5,6 +5,7 @@ export SCRIPT_DIR=$(dirname "${SCRIPT_FILE}")
 cd "${SCRIPT_DIR}"
 protoc \
 		-I. \
+		-Ivendor \
 		--go_out=. \
 		--go_opt=paths=source_relative \
 		--go-grpc_out=. \

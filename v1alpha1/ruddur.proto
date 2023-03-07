@@ -5,7 +5,15 @@ package cluster;
 option go_package = "github.com/leeuwit/ruddur/api/cluster";
 
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/protobuf/empty.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  schemes: HTTPS;
+  host: "cloud.andromeda.leeuwit.nl";
+  consumes: "application/json";
+  produces: "application/json";
+};
 
 // The project service definition.
 service ProjectService {
