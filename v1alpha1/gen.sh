@@ -1,4 +1,8 @@
 #!/bin/bash
+set -e
+export SCRIPT_FILE=$(readlink -f "$0")
+export SCRIPT_DIR=$(dirname "${SCRIPT_FILE}")
+cd "${SCRIPT_DIR}"
 protoc \
 		-I. \
 		--go_out=. \
@@ -11,6 +15,4 @@ protoc \
 		--grpc-gateway_opt generate_unbound_methods=true \
 		--openapiv2_out=. \
 		--openapiv2_opt logtostderr=true \
-		project/project.proto \
-		cluster/cluster.proto \
-		vm/vm.proto
+		ruddur.proto
