@@ -2,11 +2,11 @@
 // source: ruddur.proto
 
 /*
-Package cluster is a reverse proxy.
+Package v1alpha1 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package cluster
+package v1alpha1
 
 import (
 	"context"
@@ -32,7 +32,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_ProjectService_ListProjects_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Projects_ListProjects_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -41,7 +41,7 @@ func request_ProjectService_ListProjects_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_ProjectService_ListProjects_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Projects_ListProjects_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -50,7 +50,7 @@ func local_request_ProjectService_ListProjects_0(ctx context.Context, marshaler 
 
 }
 
-func request_ProjectService_CreateProject_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Projects_CreateProject_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateProjectRequest
 	var metadata runtime.ServerMetadata
 
@@ -67,7 +67,7 @@ func request_ProjectService_CreateProject_0(ctx context.Context, marshaler runti
 
 }
 
-func local_request_ProjectService_CreateProject_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Projects_CreateProject_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateProjectRequest
 	var metadata runtime.ServerMetadata
 
@@ -84,7 +84,7 @@ func local_request_ProjectService_CreateProject_0(ctx context.Context, marshaler
 
 }
 
-func request_ProjectService_AuthorizeUser_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Projects_AuthorizeUser_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq AuthorizeUserForProjectRequest
 	var metadata runtime.ServerMetadata
 
@@ -120,7 +120,7 @@ func request_ProjectService_AuthorizeUser_0(ctx context.Context, marshaler runti
 
 }
 
-func local_request_ProjectService_AuthorizeUser_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Projects_AuthorizeUser_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq AuthorizeUserForProjectRequest
 	var metadata runtime.ServerMetadata
 
@@ -156,7 +156,7 @@ func local_request_ProjectService_AuthorizeUser_0(ctx context.Context, marshaler
 
 }
 
-func request_ProjectService_RevokeUser_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Projects_RevokeUser_0(ctx context.Context, marshaler runtime.Marshaler, client ProjectsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq RevokeUserForProjectRequest
 	var metadata runtime.ServerMetadata
 
@@ -192,7 +192,7 @@ func request_ProjectService_RevokeUser_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_ProjectService_RevokeUser_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Projects_RevokeUser_0(ctx context.Context, marshaler runtime.Marshaler, server ProjectsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq RevokeUserForProjectRequest
 	var metadata runtime.ServerMetadata
 
@@ -228,7 +228,7 @@ func local_request_ProjectService_RevokeUser_0(ctx context.Context, marshaler ru
 
 }
 
-func request_ClusterService_ListMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, client ClusterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Clusters_ListMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, client ClustersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -237,7 +237,7 @@ func request_ClusterService_ListMachineTypes_0(ctx context.Context, marshaler ru
 
 }
 
-func local_request_ClusterService_ListMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, server ClusterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Clusters_ListMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, server ClustersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -246,7 +246,7 @@ func local_request_ClusterService_ListMachineTypes_0(ctx context.Context, marsha
 
 }
 
-func request_ClusterService_ListAvailableMachines_0(ctx context.Context, marshaler runtime.Marshaler, client ClusterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Clusters_ListAvailableMachines_0(ctx context.Context, marshaler runtime.Marshaler, client ClustersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -255,7 +255,7 @@ func request_ClusterService_ListAvailableMachines_0(ctx context.Context, marshal
 
 }
 
-func local_request_ClusterService_ListAvailableMachines_0(ctx context.Context, marshaler runtime.Marshaler, server ClusterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Clusters_ListAvailableMachines_0(ctx context.Context, marshaler runtime.Marshaler, server ClustersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -264,7 +264,7 @@ func local_request_ClusterService_ListAvailableMachines_0(ctx context.Context, m
 
 }
 
-func request_ClusterService_ListClusters_0(ctx context.Context, marshaler runtime.Marshaler, client ClusterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Clusters_ListClusters_0(ctx context.Context, marshaler runtime.Marshaler, client ClustersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListClustersRequest
 	var metadata runtime.ServerMetadata
 
@@ -290,7 +290,7 @@ func request_ClusterService_ListClusters_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_ClusterService_ListClusters_0(ctx context.Context, marshaler runtime.Marshaler, server ClusterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Clusters_ListClusters_0(ctx context.Context, marshaler runtime.Marshaler, server ClustersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListClustersRequest
 	var metadata runtime.ServerMetadata
 
@@ -316,7 +316,7 @@ func local_request_ClusterService_ListClusters_0(ctx context.Context, marshaler 
 
 }
 
-func request_ClusterService_CreateCluster_0(ctx context.Context, marshaler runtime.Marshaler, client ClusterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Clusters_CreateCluster_0(ctx context.Context, marshaler runtime.Marshaler, client ClustersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateClusterRequest
 	var metadata runtime.ServerMetadata
 
@@ -350,7 +350,7 @@ func request_ClusterService_CreateCluster_0(ctx context.Context, marshaler runti
 
 }
 
-func local_request_ClusterService_CreateCluster_0(ctx context.Context, marshaler runtime.Marshaler, server ClusterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Clusters_CreateCluster_0(ctx context.Context, marshaler runtime.Marshaler, server ClustersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateClusterRequest
 	var metadata runtime.ServerMetadata
 
@@ -384,7 +384,7 @@ func local_request_ClusterService_CreateCluster_0(ctx context.Context, marshaler
 
 }
 
-func request_ClusterService_DeleteCluster_0(ctx context.Context, marshaler runtime.Marshaler, client ClusterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Clusters_DeleteCluster_0(ctx context.Context, marshaler runtime.Marshaler, client ClustersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteClusterRequest
 	var metadata runtime.ServerMetadata
 
@@ -420,7 +420,7 @@ func request_ClusterService_DeleteCluster_0(ctx context.Context, marshaler runti
 
 }
 
-func local_request_ClusterService_DeleteCluster_0(ctx context.Context, marshaler runtime.Marshaler, server ClusterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Clusters_DeleteCluster_0(ctx context.Context, marshaler runtime.Marshaler, server ClustersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteClusterRequest
 	var metadata runtime.ServerMetadata
 
@@ -456,7 +456,7 @@ func local_request_ClusterService_DeleteCluster_0(ctx context.Context, marshaler
 
 }
 
-func request_ClusterService_Kubeconfig_0(ctx context.Context, marshaler runtime.Marshaler, client ClusterServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Clusters_Kubeconfig_0(ctx context.Context, marshaler runtime.Marshaler, client ClustersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq KubeconfigRequest
 	var metadata runtime.ServerMetadata
 
@@ -492,7 +492,7 @@ func request_ClusterService_Kubeconfig_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_ClusterService_Kubeconfig_0(ctx context.Context, marshaler runtime.Marshaler, server ClusterServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Clusters_Kubeconfig_0(ctx context.Context, marshaler runtime.Marshaler, server ClustersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq KubeconfigRequest
 	var metadata runtime.ServerMetadata
 
@@ -528,7 +528,7 @@ func local_request_ClusterService_Kubeconfig_0(ctx context.Context, marshaler ru
 
 }
 
-func request_VirtualMachineService_ListVirtualMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_VirtualMachines_ListVirtualMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -537,7 +537,7 @@ func request_VirtualMachineService_ListVirtualMachineTypes_0(ctx context.Context
 
 }
 
-func local_request_VirtualMachineService_ListVirtualMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_VirtualMachines_ListVirtualMachineTypes_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -546,7 +546,7 @@ func local_request_VirtualMachineService_ListVirtualMachineTypes_0(ctx context.C
 
 }
 
-func request_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_VirtualMachines_ListVirtualMachineOperatingSystems_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -555,7 +555,7 @@ func request_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ctx cont
 
 }
 
-func local_request_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_VirtualMachines_ListVirtualMachineOperatingSystems_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
@@ -564,7 +564,7 @@ func local_request_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ct
 
 }
 
-func request_VirtualMachineService_ListVirtualMachines_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_VirtualMachines_ListVirtualMachines_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListVirtualMachinesRequest
 	var metadata runtime.ServerMetadata
 
@@ -590,7 +590,7 @@ func request_VirtualMachineService_ListVirtualMachines_0(ctx context.Context, ma
 
 }
 
-func local_request_VirtualMachineService_ListVirtualMachines_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_VirtualMachines_ListVirtualMachines_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListVirtualMachinesRequest
 	var metadata runtime.ServerMetadata
 
@@ -616,7 +616,7 @@ func local_request_VirtualMachineService_ListVirtualMachines_0(ctx context.Conte
 
 }
 
-func request_VirtualMachineService_CreateVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_VirtualMachines_CreateVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateVirtualMachineRequest
 	var metadata runtime.ServerMetadata
 
@@ -650,7 +650,7 @@ func request_VirtualMachineService_CreateVirtualMachine_0(ctx context.Context, m
 
 }
 
-func local_request_VirtualMachineService_CreateVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_VirtualMachines_CreateVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateVirtualMachineRequest
 	var metadata runtime.ServerMetadata
 
@@ -684,7 +684,7 @@ func local_request_VirtualMachineService_CreateVirtualMachine_0(ctx context.Cont
 
 }
 
-func request_VirtualMachineService_DeleteVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_VirtualMachines_DeleteVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteVirtualMachineRequest
 	var metadata runtime.ServerMetadata
 
@@ -720,7 +720,7 @@ func request_VirtualMachineService_DeleteVirtualMachine_0(ctx context.Context, m
 
 }
 
-func local_request_VirtualMachineService_DeleteVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_VirtualMachines_DeleteVirtualMachine_0(ctx context.Context, marshaler runtime.Marshaler, server VirtualMachinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteVirtualMachineRequest
 	var metadata runtime.ServerMetadata
 
@@ -756,7 +756,7 @@ func local_request_VirtualMachineService_DeleteVirtualMachine_0(ctx context.Cont
 
 }
 
-func request_VirtualMachineService_OpenStream_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachineServiceClient, req *http.Request, pathParams map[string]string) (VirtualMachineService_OpenStreamClient, runtime.ServerMetadata, error) {
+func request_VirtualMachines_OpenStream_0(ctx context.Context, marshaler runtime.Marshaler, client VirtualMachinesClient, req *http.Request, pathParams map[string]string) (VirtualMachines_OpenStreamClient, runtime.ServerMetadata, error) {
 	var metadata runtime.ServerMetadata
 	stream, err := client.OpenStream(ctx)
 	if err != nil {
@@ -799,25 +799,25 @@ func request_VirtualMachineService_OpenStream_0(ctx context.Context, marshaler r
 	return stream, metadata, nil
 }
 
-// RegisterProjectServiceHandlerServer registers the http handlers for service ProjectService to "mux".
-// UnaryRPC     :call ProjectServiceServer directly.
+// RegisterProjectsHandlerServer registers the http handlers for service Projects to "mux".
+// UnaryRPC     :call ProjectsServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProjectServiceHandlerFromEndpoint instead.
-func RegisterProjectServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ProjectServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProjectsHandlerFromEndpoint instead.
+func RegisterProjectsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ProjectsServer) error {
 
-	mux.Handle("GET", pattern_ProjectService_ListProjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Projects_ListProjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ProjectService/ListProjects", runtime.WithHTTPPathPattern("/v1/projects"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Projects/ListProjects", runtime.WithHTTPPathPattern("/v1/projects"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ProjectService_ListProjects_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Projects_ListProjects_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -825,23 +825,23 @@ func RegisterProjectServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ProjectService_ListProjects_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_ListProjects_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ProjectService_CreateProject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Projects_CreateProject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ProjectService/CreateProject", runtime.WithHTTPPathPattern("/v1/projects"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Projects/CreateProject", runtime.WithHTTPPathPattern("/v1/projects"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ProjectService_CreateProject_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Projects_CreateProject_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -849,23 +849,23 @@ func RegisterProjectServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ProjectService_CreateProject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_CreateProject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ProjectService_AuthorizeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Projects_AuthorizeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ProjectService/AuthorizeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/authorize/{user}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Projects/AuthorizeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/authorize/{user}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ProjectService_AuthorizeUser_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Projects_AuthorizeUser_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -873,23 +873,23 @@ func RegisterProjectServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ProjectService_AuthorizeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_AuthorizeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ProjectService_RevokeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Projects_RevokeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ProjectService/RevokeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/revoke/{user}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Projects/RevokeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/revoke/{user}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ProjectService_RevokeUser_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Projects_RevokeUser_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -897,32 +897,32 @@ func RegisterProjectServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ProjectService_RevokeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_RevokeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterClusterServiceHandlerServer registers the http handlers for service ClusterService to "mux".
-// UnaryRPC     :call ClusterServiceServer directly.
+// RegisterClustersHandlerServer registers the http handlers for service Clusters to "mux".
+// UnaryRPC     :call ClustersServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterClusterServiceHandlerFromEndpoint instead.
-func RegisterClusterServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ClusterServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterClustersHandlerFromEndpoint instead.
+func RegisterClustersHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ClustersServer) error {
 
-	mux.Handle("GET", pattern_ClusterService_ListMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_ListMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ClusterService/ListMachineTypes", runtime.WithHTTPPathPattern("/v1/machines/types"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Clusters/ListMachineTypes", runtime.WithHTTPPathPattern("/v1/machines/types"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ClusterService_ListMachineTypes_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Clusters_ListMachineTypes_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -930,23 +930,23 @@ func RegisterClusterServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ClusterService_ListMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_ListMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ClusterService_ListAvailableMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_ListAvailableMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ClusterService/ListAvailableMachines", runtime.WithHTTPPathPattern("/v1/machines/available"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Clusters/ListAvailableMachines", runtime.WithHTTPPathPattern("/v1/machines/available"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ClusterService_ListAvailableMachines_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Clusters_ListAvailableMachines_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -954,23 +954,23 @@ func RegisterClusterServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ClusterService_ListAvailableMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_ListAvailableMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ClusterService_ListClusters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_ListClusters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ClusterService/ListClusters", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Clusters/ListClusters", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ClusterService_ListClusters_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Clusters_ListClusters_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -978,23 +978,23 @@ func RegisterClusterServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ClusterService_ListClusters_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_ListClusters_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ClusterService_CreateCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Clusters_CreateCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ClusterService/CreateCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Clusters/CreateCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ClusterService_CreateCluster_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Clusters_CreateCluster_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1002,23 +1002,23 @@ func RegisterClusterServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ClusterService_CreateCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_CreateCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_ClusterService_DeleteCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Clusters_DeleteCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ClusterService/DeleteCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Clusters/DeleteCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ClusterService_DeleteCluster_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Clusters_DeleteCluster_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1026,23 +1026,23 @@ func RegisterClusterServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ClusterService_DeleteCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_DeleteCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ClusterService_Kubeconfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_Kubeconfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.ClusterService/Kubeconfig", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}/kubeconfig"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.Clusters/Kubeconfig", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}/kubeconfig"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ClusterService_Kubeconfig_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Clusters_Kubeconfig_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1050,32 +1050,32 @@ func RegisterClusterServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ClusterService_Kubeconfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_Kubeconfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterVirtualMachineServiceHandlerServer registers the http handlers for service VirtualMachineService to "mux".
-// UnaryRPC     :call VirtualMachineServiceServer directly.
+// RegisterVirtualMachinesHandlerServer registers the http handlers for service VirtualMachines to "mux".
+// UnaryRPC     :call VirtualMachinesServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterVirtualMachineServiceHandlerFromEndpoint instead.
-func RegisterVirtualMachineServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server VirtualMachineServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterVirtualMachinesHandlerFromEndpoint instead.
+func RegisterVirtualMachinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server VirtualMachinesServer) error {
 
-	mux.Handle("GET", pattern_VirtualMachineService_ListVirtualMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_VirtualMachines_ListVirtualMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.VirtualMachineService/ListVirtualMachineTypes", runtime.WithHTTPPathPattern("/v1/vms/types"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.VirtualMachines/ListVirtualMachineTypes", runtime.WithHTTPPathPattern("/v1/vms/types"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_VirtualMachineService_ListVirtualMachineTypes_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_VirtualMachines_ListVirtualMachineTypes_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1083,23 +1083,23 @@ func RegisterVirtualMachineServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_VirtualMachineService_ListVirtualMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_ListVirtualMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_VirtualMachineService_ListVirtualMachineOperatingSystems_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_VirtualMachines_ListVirtualMachineOperatingSystems_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.VirtualMachineService/ListVirtualMachineOperatingSystems", runtime.WithHTTPPathPattern("/v1/vms/operatingsystems"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.VirtualMachines/ListVirtualMachineOperatingSystems", runtime.WithHTTPPathPattern("/v1/vms/operatingsystems"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_VirtualMachines_ListVirtualMachineOperatingSystems_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1107,23 +1107,23 @@ func RegisterVirtualMachineServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_ListVirtualMachineOperatingSystems_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_VirtualMachineService_ListVirtualMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_VirtualMachines_ListVirtualMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.VirtualMachineService/ListVirtualMachines", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.VirtualMachines/ListVirtualMachines", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_VirtualMachineService_ListVirtualMachines_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_VirtualMachines_ListVirtualMachines_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1131,23 +1131,23 @@ func RegisterVirtualMachineServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_VirtualMachineService_ListVirtualMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_ListVirtualMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_VirtualMachineService_CreateVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_VirtualMachines_CreateVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.VirtualMachineService/CreateVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.VirtualMachines/CreateVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_VirtualMachineService_CreateVirtualMachine_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_VirtualMachines_CreateVirtualMachine_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1155,23 +1155,23 @@ func RegisterVirtualMachineServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_VirtualMachineService_CreateVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_CreateVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_VirtualMachineService_DeleteVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_VirtualMachines_DeleteVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/cluster.VirtualMachineService/DeleteVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms/{name}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/v1alpha1.VirtualMachines/DeleteVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_VirtualMachineService_DeleteVirtualMachine_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_VirtualMachines_DeleteVirtualMachine_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1179,11 +1179,11 @@ func RegisterVirtualMachineServiceHandlerServer(ctx context.Context, mux *runtim
 			return
 		}
 
-		forward_VirtualMachineService_DeleteVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_DeleteVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_VirtualMachineService_OpenStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_VirtualMachines_OpenStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1193,9 +1193,9 @@ func RegisterVirtualMachineServiceHandlerServer(ctx context.Context, mux *runtim
 	return nil
 }
 
-// RegisterProjectServiceHandlerFromEndpoint is same as RegisterProjectServiceHandler but
+// RegisterProjectsHandlerFromEndpoint is same as RegisterProjectsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterProjectServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterProjectsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -1215,103 +1215,103 @@ func RegisterProjectServiceHandlerFromEndpoint(ctx context.Context, mux *runtime
 		}()
 	}()
 
-	return RegisterProjectServiceHandler(ctx, mux, conn)
+	return RegisterProjectsHandler(ctx, mux, conn)
 }
 
-// RegisterProjectServiceHandler registers the http handlers for service ProjectService to "mux".
+// RegisterProjectsHandler registers the http handlers for service Projects to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterProjectServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterProjectServiceHandlerClient(ctx, mux, NewProjectServiceClient(conn))
+func RegisterProjectsHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterProjectsHandlerClient(ctx, mux, NewProjectsClient(conn))
 }
 
-// RegisterProjectServiceHandlerClient registers the http handlers for service ProjectService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ProjectServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ProjectServiceClient"
+// RegisterProjectsHandlerClient registers the http handlers for service Projects
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ProjectsClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ProjectsClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ProjectServiceClient" to call the correct interceptors.
-func RegisterProjectServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ProjectServiceClient) error {
+// "ProjectsClient" to call the correct interceptors.
+func RegisterProjectsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ProjectsClient) error {
 
-	mux.Handle("GET", pattern_ProjectService_ListProjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Projects_ListProjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ProjectService/ListProjects", runtime.WithHTTPPathPattern("/v1/projects"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Projects/ListProjects", runtime.WithHTTPPathPattern("/v1/projects"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ProjectService_ListProjects_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Projects_ListProjects_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ProjectService_ListProjects_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_ListProjects_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ProjectService_CreateProject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Projects_CreateProject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ProjectService/CreateProject", runtime.WithHTTPPathPattern("/v1/projects"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Projects/CreateProject", runtime.WithHTTPPathPattern("/v1/projects"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ProjectService_CreateProject_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Projects_CreateProject_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ProjectService_CreateProject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_CreateProject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ProjectService_AuthorizeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Projects_AuthorizeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ProjectService/AuthorizeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/authorize/{user}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Projects/AuthorizeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/authorize/{user}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ProjectService_AuthorizeUser_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Projects_AuthorizeUser_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ProjectService_AuthorizeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_AuthorizeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ProjectService_RevokeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Projects_RevokeUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ProjectService/RevokeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/revoke/{user}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Projects/RevokeUser", runtime.WithHTTPPathPattern("/v1/projects/{project}/revoke/{user}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ProjectService_RevokeUser_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Projects_RevokeUser_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ProjectService_RevokeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Projects_RevokeUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1319,28 +1319,28 @@ func RegisterProjectServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_ProjectService_ListProjects_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "projects"}, ""))
+	pattern_Projects_ListProjects_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "projects"}, ""))
 
-	pattern_ProjectService_CreateProject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "projects"}, ""))
+	pattern_Projects_CreateProject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "projects"}, ""))
 
-	pattern_ProjectService_AuthorizeUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "authorize", "user"}, ""))
+	pattern_Projects_AuthorizeUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "authorize", "user"}, ""))
 
-	pattern_ProjectService_RevokeUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "revoke", "user"}, ""))
+	pattern_Projects_RevokeUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "revoke", "user"}, ""))
 )
 
 var (
-	forward_ProjectService_ListProjects_0 = runtime.ForwardResponseMessage
+	forward_Projects_ListProjects_0 = runtime.ForwardResponseMessage
 
-	forward_ProjectService_CreateProject_0 = runtime.ForwardResponseMessage
+	forward_Projects_CreateProject_0 = runtime.ForwardResponseMessage
 
-	forward_ProjectService_AuthorizeUser_0 = runtime.ForwardResponseMessage
+	forward_Projects_AuthorizeUser_0 = runtime.ForwardResponseMessage
 
-	forward_ProjectService_RevokeUser_0 = runtime.ForwardResponseMessage
+	forward_Projects_RevokeUser_0 = runtime.ForwardResponseMessage
 )
 
-// RegisterClusterServiceHandlerFromEndpoint is same as RegisterClusterServiceHandler but
+// RegisterClustersHandlerFromEndpoint is same as RegisterClustersHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterClusterServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterClustersHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -1360,145 +1360,145 @@ func RegisterClusterServiceHandlerFromEndpoint(ctx context.Context, mux *runtime
 		}()
 	}()
 
-	return RegisterClusterServiceHandler(ctx, mux, conn)
+	return RegisterClustersHandler(ctx, mux, conn)
 }
 
-// RegisterClusterServiceHandler registers the http handlers for service ClusterService to "mux".
+// RegisterClustersHandler registers the http handlers for service Clusters to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterClusterServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterClusterServiceHandlerClient(ctx, mux, NewClusterServiceClient(conn))
+func RegisterClustersHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterClustersHandlerClient(ctx, mux, NewClustersClient(conn))
 }
 
-// RegisterClusterServiceHandlerClient registers the http handlers for service ClusterService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ClusterServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ClusterServiceClient"
+// RegisterClustersHandlerClient registers the http handlers for service Clusters
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ClustersClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ClustersClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ClusterServiceClient" to call the correct interceptors.
-func RegisterClusterServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ClusterServiceClient) error {
+// "ClustersClient" to call the correct interceptors.
+func RegisterClustersHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ClustersClient) error {
 
-	mux.Handle("GET", pattern_ClusterService_ListMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_ListMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ClusterService/ListMachineTypes", runtime.WithHTTPPathPattern("/v1/machines/types"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Clusters/ListMachineTypes", runtime.WithHTTPPathPattern("/v1/machines/types"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ClusterService_ListMachineTypes_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Clusters_ListMachineTypes_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ClusterService_ListMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_ListMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ClusterService_ListAvailableMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_ListAvailableMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ClusterService/ListAvailableMachines", runtime.WithHTTPPathPattern("/v1/machines/available"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Clusters/ListAvailableMachines", runtime.WithHTTPPathPattern("/v1/machines/available"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ClusterService_ListAvailableMachines_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Clusters_ListAvailableMachines_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ClusterService_ListAvailableMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_ListAvailableMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ClusterService_ListClusters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_ListClusters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ClusterService/ListClusters", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Clusters/ListClusters", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ClusterService_ListClusters_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Clusters_ListClusters_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ClusterService_ListClusters_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_ListClusters_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_ClusterService_CreateCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Clusters_CreateCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ClusterService/CreateCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Clusters/CreateCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ClusterService_CreateCluster_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Clusters_CreateCluster_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ClusterService_CreateCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_CreateCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_ClusterService_DeleteCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Clusters_DeleteCluster_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ClusterService/DeleteCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Clusters/DeleteCluster", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ClusterService_DeleteCluster_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Clusters_DeleteCluster_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ClusterService_DeleteCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_DeleteCluster_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ClusterService_Kubeconfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Clusters_Kubeconfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.ClusterService/Kubeconfig", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}/kubeconfig"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.Clusters/Kubeconfig", runtime.WithHTTPPathPattern("/v1/projects/{project}/clusters/{name}/kubeconfig"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ClusterService_Kubeconfig_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Clusters_Kubeconfig_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ClusterService_Kubeconfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Clusters_Kubeconfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1506,36 +1506,36 @@ func RegisterClusterServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_ClusterService_ListMachineTypes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "machines", "types"}, ""))
+	pattern_Clusters_ListMachineTypes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "machines", "types"}, ""))
 
-	pattern_ClusterService_ListAvailableMachines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "machines", "available"}, ""))
+	pattern_Clusters_ListAvailableMachines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "machines", "available"}, ""))
 
-	pattern_ClusterService_ListClusters_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "clusters"}, ""))
+	pattern_Clusters_ListClusters_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "clusters"}, ""))
 
-	pattern_ClusterService_CreateCluster_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "clusters"}, ""))
+	pattern_Clusters_CreateCluster_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "clusters"}, ""))
 
-	pattern_ClusterService_DeleteCluster_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "clusters", "name"}, ""))
+	pattern_Clusters_DeleteCluster_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "clusters", "name"}, ""))
 
-	pattern_ClusterService_Kubeconfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1", "projects", "project", "clusters", "name", "kubeconfig"}, ""))
+	pattern_Clusters_Kubeconfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1", "projects", "project", "clusters", "name", "kubeconfig"}, ""))
 )
 
 var (
-	forward_ClusterService_ListMachineTypes_0 = runtime.ForwardResponseMessage
+	forward_Clusters_ListMachineTypes_0 = runtime.ForwardResponseMessage
 
-	forward_ClusterService_ListAvailableMachines_0 = runtime.ForwardResponseMessage
+	forward_Clusters_ListAvailableMachines_0 = runtime.ForwardResponseMessage
 
-	forward_ClusterService_ListClusters_0 = runtime.ForwardResponseMessage
+	forward_Clusters_ListClusters_0 = runtime.ForwardResponseMessage
 
-	forward_ClusterService_CreateCluster_0 = runtime.ForwardResponseMessage
+	forward_Clusters_CreateCluster_0 = runtime.ForwardResponseMessage
 
-	forward_ClusterService_DeleteCluster_0 = runtime.ForwardResponseMessage
+	forward_Clusters_DeleteCluster_0 = runtime.ForwardResponseMessage
 
-	forward_ClusterService_Kubeconfig_0 = runtime.ForwardResponseMessage
+	forward_Clusters_Kubeconfig_0 = runtime.ForwardResponseMessage
 )
 
-// RegisterVirtualMachineServiceHandlerFromEndpoint is same as RegisterVirtualMachineServiceHandler but
+// RegisterVirtualMachinesHandlerFromEndpoint is same as RegisterVirtualMachinesHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterVirtualMachineServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterVirtualMachinesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -1555,145 +1555,145 @@ func RegisterVirtualMachineServiceHandlerFromEndpoint(ctx context.Context, mux *
 		}()
 	}()
 
-	return RegisterVirtualMachineServiceHandler(ctx, mux, conn)
+	return RegisterVirtualMachinesHandler(ctx, mux, conn)
 }
 
-// RegisterVirtualMachineServiceHandler registers the http handlers for service VirtualMachineService to "mux".
+// RegisterVirtualMachinesHandler registers the http handlers for service VirtualMachines to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterVirtualMachineServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterVirtualMachineServiceHandlerClient(ctx, mux, NewVirtualMachineServiceClient(conn))
+func RegisterVirtualMachinesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterVirtualMachinesHandlerClient(ctx, mux, NewVirtualMachinesClient(conn))
 }
 
-// RegisterVirtualMachineServiceHandlerClient registers the http handlers for service VirtualMachineService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "VirtualMachineServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "VirtualMachineServiceClient"
+// RegisterVirtualMachinesHandlerClient registers the http handlers for service VirtualMachines
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "VirtualMachinesClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "VirtualMachinesClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "VirtualMachineServiceClient" to call the correct interceptors.
-func RegisterVirtualMachineServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client VirtualMachineServiceClient) error {
+// "VirtualMachinesClient" to call the correct interceptors.
+func RegisterVirtualMachinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client VirtualMachinesClient) error {
 
-	mux.Handle("GET", pattern_VirtualMachineService_ListVirtualMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_VirtualMachines_ListVirtualMachineTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.VirtualMachineService/ListVirtualMachineTypes", runtime.WithHTTPPathPattern("/v1/vms/types"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.VirtualMachines/ListVirtualMachineTypes", runtime.WithHTTPPathPattern("/v1/vms/types"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_VirtualMachineService_ListVirtualMachineTypes_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_VirtualMachines_ListVirtualMachineTypes_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_VirtualMachineService_ListVirtualMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_ListVirtualMachineTypes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_VirtualMachineService_ListVirtualMachineOperatingSystems_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_VirtualMachines_ListVirtualMachineOperatingSystems_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.VirtualMachineService/ListVirtualMachineOperatingSystems", runtime.WithHTTPPathPattern("/v1/vms/operatingsystems"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.VirtualMachines/ListVirtualMachineOperatingSystems", runtime.WithHTTPPathPattern("/v1/vms/operatingsystems"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_VirtualMachines_ListVirtualMachineOperatingSystems_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_VirtualMachineService_ListVirtualMachineOperatingSystems_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_ListVirtualMachineOperatingSystems_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_VirtualMachineService_ListVirtualMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_VirtualMachines_ListVirtualMachines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.VirtualMachineService/ListVirtualMachines", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.VirtualMachines/ListVirtualMachines", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_VirtualMachineService_ListVirtualMachines_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_VirtualMachines_ListVirtualMachines_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_VirtualMachineService_ListVirtualMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_ListVirtualMachines_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_VirtualMachineService_CreateVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_VirtualMachines_CreateVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.VirtualMachineService/CreateVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.VirtualMachines/CreateVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_VirtualMachineService_CreateVirtualMachine_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_VirtualMachines_CreateVirtualMachine_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_VirtualMachineService_CreateVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_CreateVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_VirtualMachineService_DeleteVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_VirtualMachines_DeleteVirtualMachine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.VirtualMachineService/DeleteVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms/{name}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.VirtualMachines/DeleteVirtualMachine", runtime.WithHTTPPathPattern("/v1/projects/{project}/vms/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_VirtualMachineService_DeleteVirtualMachine_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_VirtualMachines_DeleteVirtualMachine_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_VirtualMachineService_DeleteVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_DeleteVirtualMachine_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_VirtualMachineService_OpenStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_VirtualMachines_OpenStream_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/cluster.VirtualMachineService/OpenStream", runtime.WithHTTPPathPattern("/cluster.VirtualMachineService/OpenStream"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/v1alpha1.VirtualMachines/OpenStream", runtime.WithHTTPPathPattern("/v1alpha1.VirtualMachines/OpenStream"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_VirtualMachineService_OpenStream_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_VirtualMachines_OpenStream_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_VirtualMachineService_OpenStream_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_VirtualMachines_OpenStream_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1701,29 +1701,29 @@ func RegisterVirtualMachineServiceHandlerClient(ctx context.Context, mux *runtim
 }
 
 var (
-	pattern_VirtualMachineService_ListVirtualMachineTypes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "vms", "types"}, ""))
+	pattern_VirtualMachines_ListVirtualMachineTypes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "vms", "types"}, ""))
 
-	pattern_VirtualMachineService_ListVirtualMachineOperatingSystems_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "vms", "operatingsystems"}, ""))
+	pattern_VirtualMachines_ListVirtualMachineOperatingSystems_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "vms", "operatingsystems"}, ""))
 
-	pattern_VirtualMachineService_ListVirtualMachines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "vms"}, ""))
+	pattern_VirtualMachines_ListVirtualMachines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "vms"}, ""))
 
-	pattern_VirtualMachineService_CreateVirtualMachine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "vms"}, ""))
+	pattern_VirtualMachines_CreateVirtualMachine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "projects", "project", "vms"}, ""))
 
-	pattern_VirtualMachineService_DeleteVirtualMachine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "vms", "name"}, ""))
+	pattern_VirtualMachines_DeleteVirtualMachine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "projects", "project", "vms", "name"}, ""))
 
-	pattern_VirtualMachineService_OpenStream_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"cluster.VirtualMachineService", "OpenStream"}, ""))
+	pattern_VirtualMachines_OpenStream_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1alpha1.VirtualMachines", "OpenStream"}, ""))
 )
 
 var (
-	forward_VirtualMachineService_ListVirtualMachineTypes_0 = runtime.ForwardResponseMessage
+	forward_VirtualMachines_ListVirtualMachineTypes_0 = runtime.ForwardResponseMessage
 
-	forward_VirtualMachineService_ListVirtualMachineOperatingSystems_0 = runtime.ForwardResponseMessage
+	forward_VirtualMachines_ListVirtualMachineOperatingSystems_0 = runtime.ForwardResponseMessage
 
-	forward_VirtualMachineService_ListVirtualMachines_0 = runtime.ForwardResponseMessage
+	forward_VirtualMachines_ListVirtualMachines_0 = runtime.ForwardResponseMessage
 
-	forward_VirtualMachineService_CreateVirtualMachine_0 = runtime.ForwardResponseMessage
+	forward_VirtualMachines_CreateVirtualMachine_0 = runtime.ForwardResponseMessage
 
-	forward_VirtualMachineService_DeleteVirtualMachine_0 = runtime.ForwardResponseMessage
+	forward_VirtualMachines_DeleteVirtualMachine_0 = runtime.ForwardResponseMessage
 
-	forward_VirtualMachineService_OpenStream_0 = runtime.ForwardResponseStream
+	forward_VirtualMachines_OpenStream_0 = runtime.ForwardResponseStream
 )

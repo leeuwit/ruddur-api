@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cluster;
+package v1alpha1;
 
-option go_package = "github.com/leeuwit/ruddur/api/cluster";
+option go_package = "github.com/leeuwit/ruddur-api/v1alpha1";
 
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
@@ -16,7 +16,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 // The project service definition.
-service ProjectService {
+service Projects {
   rpc ListProjects(google.protobuf.Empty) returns (ListProjectsResponse) {
     option (google.api.http) = {
       get: "/v1/projects"
@@ -65,7 +65,7 @@ message RevokeUserForProjectRequest {
 }
 
 // The cluster service definition.
-service ClusterService {
+service Clusters {
   rpc ListMachineTypes(google.protobuf.Empty) returns (MachineTypesResponse) {
     option (google.api.http) = {
       get: "/v1/machines/types"
@@ -162,7 +162,7 @@ message KubeconfigResponse {
 }
 
 // The virtual machine service definition.
-service VirtualMachineService {
+service VirtualMachines {
   rpc ListVirtualMachineTypes(google.protobuf.Empty) returns (VirtualMachineTypesResponse) {
     option (google.api.http) = {
       get: "/v1/vms/types"

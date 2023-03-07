@@ -6,13 +6,13 @@
   },
   "tags": [
     {
-      "name": "ProjectService"
+      "name": "Projects"
     },
     {
-      "name": "ClusterService"
+      "name": "Clusters"
     },
     {
-      "name": "VirtualMachineService"
+      "name": "VirtualMachines"
     }
   ],
   "host": "cloud.andromeda.leeuwit.nl",
@@ -28,12 +28,12 @@
   "paths": {
     "/v1/machines/available": {
       "get": {
-        "operationId": "ClusterService_ListAvailableMachines",
+        "operationId": "Clusters_ListAvailableMachines",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterAvailableMachinesResponse"
+              "$ref": "#/definitions/v1alpha1AvailableMachinesResponse"
             }
           },
           "default": {
@@ -44,18 +44,18 @@
           }
         },
         "tags": [
-          "ClusterService"
+          "Clusters"
         ]
       }
     },
     "/v1/machines/types": {
       "get": {
-        "operationId": "ClusterService_ListMachineTypes",
+        "operationId": "Clusters_ListMachineTypes",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterMachineTypesResponse"
+              "$ref": "#/definitions/v1alpha1MachineTypesResponse"
             }
           },
           "default": {
@@ -66,18 +66,18 @@
           }
         },
         "tags": [
-          "ClusterService"
+          "Clusters"
         ]
       }
     },
     "/v1/projects": {
       "get": {
-        "operationId": "ProjectService_ListProjects",
+        "operationId": "Projects_ListProjects",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterListProjectsResponse"
+              "$ref": "#/definitions/v1alpha1ListProjectsResponse"
             }
           },
           "default": {
@@ -88,11 +88,11 @@
           }
         },
         "tags": [
-          "ProjectService"
+          "Projects"
         ]
       },
       "post": {
-        "operationId": "ProjectService_CreateProject",
+        "operationId": "Projects_CreateProject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -114,18 +114,18 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/clusterCreateProjectRequest"
+              "$ref": "#/definitions/v1alpha1CreateProjectRequest"
             }
           }
         ],
         "tags": [
-          "ProjectService"
+          "Projects"
         ]
       }
     },
     "/v1/projects/{project}/authorize/{user}": {
       "post": {
-        "operationId": "ProjectService_AuthorizeUser",
+        "operationId": "Projects_AuthorizeUser",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -158,18 +158,18 @@
           }
         ],
         "tags": [
-          "ProjectService"
+          "Projects"
         ]
       }
     },
     "/v1/projects/{project}/clusters": {
       "get": {
-        "operationId": "ClusterService_ListClusters",
+        "operationId": "Clusters_ListClusters",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterListClustersResponse"
+              "$ref": "#/definitions/v1alpha1ListClustersResponse"
             }
           },
           "default": {
@@ -188,16 +188,16 @@
           }
         ],
         "tags": [
-          "ClusterService"
+          "Clusters"
         ]
       },
       "post": {
-        "operationId": "ClusterService_CreateCluster",
+        "operationId": "Clusters_CreateCluster",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterCreateClusterResponse"
+              "$ref": "#/definitions/v1alpha1CreateClusterResponse"
             }
           },
           "default": {
@@ -225,12 +225,12 @@
                   "type": "string"
                 },
                 "controlPlaneNodes": {
-                  "$ref": "#/definitions/clusterMachineTypeAndAmount"
+                  "$ref": "#/definitions/v1alpha1MachineTypeAndAmount"
                 },
                 "workerNodes": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/clusterMachineTypeAndAmount"
+                    "$ref": "#/definitions/v1alpha1MachineTypeAndAmount"
                   }
                 }
               }
@@ -238,18 +238,18 @@
           }
         ],
         "tags": [
-          "ClusterService"
+          "Clusters"
         ]
       }
     },
     "/v1/projects/{project}/clusters/{name}": {
       "delete": {
-        "operationId": "ClusterService_DeleteCluster",
+        "operationId": "Clusters_DeleteCluster",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterDeleteClusterResponse"
+              "$ref": "#/definitions/v1alpha1DeleteClusterResponse"
             }
           },
           "default": {
@@ -274,18 +274,18 @@
           }
         ],
         "tags": [
-          "ClusterService"
+          "Clusters"
         ]
       }
     },
     "/v1/projects/{project}/clusters/{name}/kubeconfig": {
       "get": {
-        "operationId": "ClusterService_Kubeconfig",
+        "operationId": "Clusters_Kubeconfig",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterKubeconfigResponse"
+              "$ref": "#/definitions/v1alpha1KubeconfigResponse"
             }
           },
           "default": {
@@ -310,13 +310,13 @@
           }
         ],
         "tags": [
-          "ClusterService"
+          "Clusters"
         ]
       }
     },
     "/v1/projects/{project}/revoke/{user}": {
       "post": {
-        "operationId": "ProjectService_RevokeUser",
+        "operationId": "Projects_RevokeUser",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -349,18 +349,18 @@
           }
         ],
         "tags": [
-          "ProjectService"
+          "Projects"
         ]
       }
     },
     "/v1/projects/{project}/vms": {
       "get": {
-        "operationId": "VirtualMachineService_ListVirtualMachines",
+        "operationId": "VirtualMachines_ListVirtualMachines",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterListVirtualMachinesResponse"
+              "$ref": "#/definitions/v1alpha1ListVirtualMachinesResponse"
             }
           },
           "default": {
@@ -379,16 +379,16 @@
           }
         ],
         "tags": [
-          "VirtualMachineService"
+          "VirtualMachines"
         ]
       },
       "post": {
-        "operationId": "VirtualMachineService_CreateVirtualMachine",
+        "operationId": "VirtualMachines_CreateVirtualMachine",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterCreateVirtualMachineResponse"
+              "$ref": "#/definitions/v1alpha1CreateVirtualMachineResponse"
             }
           },
           "default": {
@@ -426,18 +426,18 @@
           }
         ],
         "tags": [
-          "VirtualMachineService"
+          "VirtualMachines"
         ]
       }
     },
     "/v1/projects/{project}/vms/{name}": {
       "delete": {
-        "operationId": "VirtualMachineService_DeleteVirtualMachine",
+        "operationId": "VirtualMachines_DeleteVirtualMachine",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterDeleteVirtualMachineResponse"
+              "$ref": "#/definitions/v1alpha1DeleteVirtualMachineResponse"
             }
           },
           "default": {
@@ -462,18 +462,18 @@
           }
         ],
         "tags": [
-          "VirtualMachineService"
+          "VirtualMachines"
         ]
       }
     },
     "/v1/vms/operatingsystems": {
       "get": {
-        "operationId": "VirtualMachineService_ListVirtualMachineOperatingSystems",
+        "operationId": "VirtualMachines_ListVirtualMachineOperatingSystems",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterVirtualMachineOperatingSystemsResponse"
+              "$ref": "#/definitions/v1alpha1VirtualMachineOperatingSystemsResponse"
             }
           },
           "default": {
@@ -484,18 +484,18 @@
           }
         },
         "tags": [
-          "VirtualMachineService"
+          "VirtualMachines"
         ]
       }
     },
     "/v1/vms/types": {
       "get": {
-        "operationId": "VirtualMachineService_ListVirtualMachineTypes",
+        "operationId": "VirtualMachines_ListVirtualMachineTypes",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/clusterVirtualMachineTypesResponse"
+              "$ref": "#/definitions/v1alpha1VirtualMachineTypesResponse"
             }
           },
           "default": {
@@ -506,201 +506,12 @@
           }
         },
         "tags": [
-          "VirtualMachineService"
+          "VirtualMachines"
         ]
       }
     }
   },
   "definitions": {
-    "clusterAvailableMachinesResponse": {
-      "type": "object",
-      "properties": {
-        "machines": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/clusterMachineTypeAndAmount"
-          }
-        }
-      }
-    },
-    "clusterChunk": {
-      "type": "object",
-      "properties": {
-        "chunk": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "clusterCluster": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        }
-      }
-    },
-    "clusterCreateClusterResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        }
-      }
-    },
-    "clusterCreateProjectRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the project."
-        }
-      }
-    },
-    "clusterCreateVirtualMachineResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "clusterDeleteClusterResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "clusterDeleteVirtualMachineResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "clusterKubeconfigResponse": {
-      "type": "object",
-      "properties": {
-        "kubeconfig": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "clusterListClustersResponse": {
-      "type": "object",
-      "properties": {
-        "clusters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/clusterCluster"
-          }
-        }
-      }
-    },
-    "clusterListProjectsResponse": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Names of the projects."
-        }
-      }
-    },
-    "clusterListVirtualMachinesResponse": {
-      "type": "object",
-      "properties": {
-        "vms": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/clusterVirtualMachine"
-          }
-        }
-      }
-    },
-    "clusterMachineTypeAndAmount": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "clusterMachineTypesResponse": {
-      "type": "object",
-      "properties": {
-        "types": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "clusterVirtualMachine": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        }
-      }
-    },
-    "clusterVirtualMachineOperatingSystemsResponse": {
-      "type": "object",
-      "properties": {
-        "operatingSystems": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "clusterVirtualMachineTypesResponse": {
-      "type": "object",
-      "properties": {
-        "types": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -724,6 +535,195 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1alpha1AvailableMachinesResponse": {
+      "type": "object",
+      "properties": {
+        "machines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1alpha1MachineTypeAndAmount"
+          }
+        }
+      }
+    },
+    "v1alpha1Chunk": {
+      "type": "object",
+      "properties": {
+        "chunk": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "v1alpha1Cluster": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1CreateClusterResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1CreateProjectRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the project."
+        }
+      }
+    },
+    "v1alpha1CreateVirtualMachineResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1DeleteClusterResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1DeleteVirtualMachineResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1KubeconfigResponse": {
+      "type": "object",
+      "properties": {
+        "kubeconfig": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "v1alpha1ListClustersResponse": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1alpha1Cluster"
+          }
+        }
+      }
+    },
+    "v1alpha1ListProjectsResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Names of the projects."
+        }
+      }
+    },
+    "v1alpha1ListVirtualMachinesResponse": {
+      "type": "object",
+      "properties": {
+        "vms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1alpha1VirtualMachine"
+          }
+        }
+      }
+    },
+    "v1alpha1MachineTypeAndAmount": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1alpha1MachineTypesResponse": {
+      "type": "object",
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1alpha1VirtualMachine": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "v1alpha1VirtualMachineOperatingSystemsResponse": {
+      "type": "object",
+      "properties": {
+        "operatingSystems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1alpha1VirtualMachineTypesResponse": {
+      "type": "object",
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
