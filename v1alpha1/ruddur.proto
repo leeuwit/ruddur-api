@@ -13,6 +13,10 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   host: "cloud.ruddur.dev";
   consumes: "application/json";
   produces: "application/json";
+  info: {
+    title: "Ruddur API";
+    version: "v1alpha1";
+  }
 };
 
 // The project service definition.
