@@ -18,7 +18,7 @@
       "name": "VirtualMachines"
     }
   ],
-  "host": "cloud.andromeda.leeuwit.nl",
+  "host": "cloud.ruddur.dev",
   "schemes": [
     "https"
   ],
