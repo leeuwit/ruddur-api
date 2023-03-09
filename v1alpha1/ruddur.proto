@@ -17,6 +17,38 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     title: "Ruddur API";
     version: "v1alpha1";
   }
+  security_definitions: {
+    security: {
+      key: "OAuth2";
+      value: {
+        type: TYPE_OAUTH2;
+        flow: FLOW_IMPLICIT;
+        authorization_url: "https://auth.ruddur.dev/authorize";
+        scopes: {
+          scope: {
+            key: "viewer";
+            value: "View most resources";
+          }
+          scope: {
+            key: "editor";
+            value: "View, create, update, and delete most resources";
+          }
+          scope: {
+            key: "owner";
+            value: "Full access to most resources";
+          }
+        }
+      }
+    }
+  }
+  security : {
+    security_requirement: {
+      key: "OAuth2"
+      value: {
+        scope: "viewer";
+      }
+    }
+  }
 };
 
 // The project service definition.
@@ -32,14 +64,41 @@ service Projects {
       body: "*"
     };
   };
+  rpc ListUsers(ListUsersForProjectRequest) returns (ListUsersForProjectResponse) {
+    option (google.api.http) = {
+      get: "/v1/projects/{name}/users"
+    };
+  };
   rpc AuthorizeUser(AuthorizeUserForProjectRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/v1/projects/{project}/authorize/{user}"
+      post: "/v1/projects/{name}/authorize"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "OAuth2";
+          value: {
+            scope: "owner";
+          }
+        }
+      }
     };
   };
   rpc RevokeUser(RevokeUserForProjectRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/v1/projects/{project}/revoke/{user}"
+      post: "/v1/projects/{name}/revoke"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "OAuth2";
+          value: {
+            scope: "owner";
+          }
+        }
+      }
     };
   };
 }
@@ -54,16 +113,35 @@ message CreateProjectRequest {
   string name = 1;
 }
 
+message ListUsersForProjectRequest {
+  // Name of the project.
+  string name = 1;
+}
+
+message UserAndRole {
+  string user = 1;
+  string role = 2;
+}
+
+message ListUsersForProjectResponse {
+  // Name of the project.
+  string name = 1;
+  // Authorized users.
+  repeated UserAndRole users = 2;
+}
+
 message AuthorizeUserForProjectRequest {
   // Name of the project.
-  string project = 1;
+  string name = 1;
   // User to authorize.
   string user = 2;
+  // New role of user.
+  string role = 3;
 }
 
 message RevokeUserForProjectRequest {
   // Name of the project.
-  string project = 1;
+  string name = 1;
   // User to revoke.
   string user = 2;
 }
@@ -107,6 +185,16 @@ service Clusters {
       post: "/v1/projects/{project}/clusters"
       body: "*"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "OAuth2";
+          value: {
+            scope: "editor";
+          }
+        }
+      }
+    };
   };
 
   // TODO: EditCluster (extend / shrink)
@@ -114,6 +202,16 @@ service Clusters {
   rpc Delete(DeleteClusterRequest) returns (DeleteClusterResponse){
     option (google.api.http) = {
       delete: "/v1/projects/{project}/clusters/{name}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "OAuth2";
+          value: {
+            scope: "editor";
+          }
+        }
+      }
     };
   };
   rpc Kubeconfig(KubeconfigRequest) returns (KubeconfigResponse){
@@ -191,10 +289,30 @@ service VirtualMachines {
       post: "/v1/projects/{project}/vms"
       body: "*"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "OAuth2";
+          value: {
+            scope: "editor";
+          }
+        }
+      }
+    };
   };
   rpc Delete(DeleteVirtualMachineRequest) returns (DeleteVirtualMachineResponse){
     option (google.api.http) = {
       delete: "/v1/projects/{project}/vms/{name}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "OAuth2";
+          value: {
+            scope: "editor";
+          }
+        }
+      }
     };
   };
   rpc OpenStream(stream Chunk) returns (stream Chunk);

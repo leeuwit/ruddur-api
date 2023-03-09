@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type ProjectsClient interface {
 	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListProjectsResponse, error)
 	Create(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListUsers(ctx context.Context, in *ListUsersForProjectRequest, opts ...grpc.CallOption) (*ListUsersForProjectResponse, error)
 	AuthorizeUser(ctx context.Context, in *AuthorizeUserForProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RevokeUser(ctx context.Context, in *RevokeUserForProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -51,6 +52,15 @@ func (c *projectsClient) Create(ctx context.Context, in *CreateProjectRequest, o
 	return out, nil
 }
 
+func (c *projectsClient) ListUsers(ctx context.Context, in *ListUsersForProjectRequest, opts ...grpc.CallOption) (*ListUsersForProjectResponse, error) {
+	out := new(ListUsersForProjectResponse)
+	err := c.cc.Invoke(ctx, "/v1alpha1.Projects/ListUsers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *projectsClient) AuthorizeUser(ctx context.Context, in *AuthorizeUserForProjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/v1alpha1.Projects/AuthorizeUser", in, out, opts...)
@@ -75,6 +85,7 @@ func (c *projectsClient) RevokeUser(ctx context.Context, in *RevokeUserForProjec
 type ProjectsServer interface {
 	List(context.Context, *emptypb.Empty) (*ListProjectsResponse, error)
 	Create(context.Context, *CreateProjectRequest) (*emptypb.Empty, error)
+	ListUsers(context.Context, *ListUsersForProjectRequest) (*ListUsersForProjectResponse, error)
 	AuthorizeUser(context.Context, *AuthorizeUserForProjectRequest) (*emptypb.Empty, error)
 	RevokeUser(context.Context, *RevokeUserForProjectRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedProjectsServer()
@@ -89,6 +100,9 @@ func (UnimplementedProjectsServer) List(context.Context, *emptypb.Empty) (*ListP
 }
 func (UnimplementedProjectsServer) Create(context.Context, *CreateProjectRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedProjectsServer) ListUsers(context.Context, *ListUsersForProjectRequest) (*ListUsersForProjectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUsers not implemented")
 }
 func (UnimplementedProjectsServer) AuthorizeUser(context.Context, *AuthorizeUserForProjectRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthorizeUser not implemented")
@@ -145,6 +159,24 @@ func _Projects_Create_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Projects_ListUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUsersForProjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectsServer).ListUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1alpha1.Projects/ListUsers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectsServer).ListUsers(ctx, req.(*ListUsersForProjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Projects_AuthorizeUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthorizeUserForProjectRequest)
 	if err := dec(in); err != nil {
@@ -195,6 +227,10 @@ var Projects_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _Projects_Create_Handler,
+		},
+		{
+			MethodName: "ListUsers",
+			Handler:    _Projects_ListUsers_Handler,
 		},
 		{
 			MethodName: "AuthorizeUser",

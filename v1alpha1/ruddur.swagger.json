@@ -126,7 +126,7 @@
         ]
       }
     },
-    "/v1/projects/{project}/authorize/{user}": {
+    "/v1/projects/{name}/authorize": {
       "post": {
         "operationId": "Projects_AuthorizeUser",
         "responses": {
@@ -146,15 +146,117 @@
         },
         "parameters": [
           {
-            "name": "project",
+            "name": "name",
             "description": "Name of the project.",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "user",
-            "description": "User to authorize.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "string",
+                  "description": "User to authorize."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "New role of user."
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Projects"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "owner"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/projects/{name}/revoke": {
+      "post": {
+        "operationId": "Projects_RevokeUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "description": "Name of the project.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "string",
+                  "description": "User to revoke."
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Projects"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "owner"
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/projects/{name}/users": {
+      "get": {
+        "operationId": "Projects_ListUsers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1alpha1ListUsersForProjectResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "description": "Name of the project.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -242,6 +344,13 @@
         ],
         "tags": [
           "Clusters"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "editor"
+            ]
+          }
         ]
       }
     },
@@ -278,6 +387,13 @@
         ],
         "tags": [
           "Clusters"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "editor"
+            ]
+          }
         ]
       }
     },
@@ -314,45 +430,6 @@
         ],
         "tags": [
           "Clusters"
-        ]
-      }
-    },
-    "/v1/projects/{project}/revoke/{user}": {
-      "post": {
-        "operationId": "Projects_RevokeUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "project",
-            "description": "Name of the project.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "user",
-            "description": "User to revoke.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Projects"
         ]
       }
     },
@@ -430,6 +507,13 @@
         ],
         "tags": [
           "VirtualMachines"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "editor"
+            ]
+          }
         ]
       }
     },
@@ -466,6 +550,13 @@
         ],
         "tags": [
           "VirtualMachines"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "editor"
+            ]
+          }
         ]
       }
     },
@@ -664,6 +755,22 @@
         }
       }
     },
+    "v1alpha1ListUsersForProjectResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the project."
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1alpha1UserAndRole"
+          },
+          "description": "Authorized users."
+        }
+      }
+    },
     "v1alpha1ListVirtualMachinesResponse": {
       "type": "object",
       "properties": {
@@ -695,6 +802,17 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "v1alpha1UserAndRole": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
         }
       }
     },
@@ -731,5 +849,24 @@
         }
       }
     }
-  }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://auth.ruddur.dev/authorize",
+      "scopes": {
+        "editor": "View, create, update, and delete most resources",
+        "owner": "Full access to most resources",
+        "viewer": "View most resources"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2": [
+        "viewer"
+      ]
+    }
+  ]
 }
