@@ -853,11 +853,16 @@
   "securityDefinitions": {
     "OAuth2": {
       "type": "oauth2",
-      "flow": "implicit",
+      "flow": "accessCode",
       "authorizationUrl": "https://auth.ruddur.dev/authorize",
+      "tokenUrl": "https://auth.ruddur.dev/token",
       "scopes": {
         "editor": "View, create, update, and delete most resources",
+        "email": "Returns the email claim, which contains the user's email address, and email_verified, which is a boolean indicating whether the email address was verified by the user.",
+        "offline_access": "Returns a refresh_token which allows offline access.",
+        "openid": "Returns the sub claim, which uniquely identifies the user. In an ID Token, iss, aud, exp, iat, and at_hash claims will also be present.",
         "owner": "Full access to most resources",
+        "profile": "Returns claims that represent basic profile information, including name, family_name, given_name, middle_name, nickname, picture, and updated_at.",
         "viewer": "View most resources"
       }
     }

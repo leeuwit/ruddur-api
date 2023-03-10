@@ -22,9 +22,26 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
       key: "OAuth2";
       value: {
         type: TYPE_OAUTH2;
-        flow: FLOW_IMPLICIT;
+        flow: FLOW_ACCESS_CODE;
         authorization_url: "https://auth.ruddur.dev/authorize";
+        token_url: "https://auth.ruddur.dev/token";
         scopes: {
+          scope: {
+            key: "openid";
+            value: "Returns the sub claim, which uniquely identifies the user. In an ID Token, iss, aud, exp, iat, and at_hash claims will also be present.";
+          }
+          scope: {
+            key: "profile";
+            value: "Returns claims that represent basic profile information, including name, family_name, given_name, middle_name, nickname, picture, and updated_at.";
+          }
+          scope: {
+            key: "email";
+            value: "Returns the email claim, which contains the user's email address, and email_verified, which is a boolean indicating whether the email address was verified by the user.";
+          }
+          scope: {
+            key: "offline_access";
+            value: "Returns a refresh_token which allows offline access.";
+          }
           scope: {
             key: "viewer";
             value: "View most resources";
