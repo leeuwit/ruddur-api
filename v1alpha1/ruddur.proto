@@ -23,7 +23,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
       value: {
         type: TYPE_OAUTH2;
         flow: FLOW_ACCESS_CODE;
-        authorization_url: "https://auth.ruddur.dev/authorize";
+        authorization_url: "https://auth.ruddur.dev/auth";
         token_url: "https://auth.ruddur.dev/token";
         scopes: {
           scope: {

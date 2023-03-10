@@ -854,7 +854,7 @@
     "OAuth2": {
       "type": "oauth2",
       "flow": "accessCode",
-      "authorizationUrl": "https://auth.ruddur.dev/authorize",
+      "authorizationUrl": "https://auth.ruddur.dev/auth",
       "tokenUrl": "https://auth.ruddur.dev/token",
       "scopes": {
         "editor": "View, create, update, and delete most resources",
