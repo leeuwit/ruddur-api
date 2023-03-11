@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package ruddur.v1;
+
+import "google/protobuf/empty.proto";
+
+// The virtual machines service definition.
+service VirtualMachineService {
+  rpc ListTypes(google.protobuf.Empty) returns (VirtualMachineServiceListTypesResponse);
+  rpc ListOperatingSystems(google.protobuf.Empty) returns (VirtualMachineServiceListOperatingSystemsResponse);
+  rpc List(VirtualMachineServiceListRequest) returns (VirtualMachineServiceListResponse);
+  rpc Create(VirtualMachineServiceCreateRequest) returns (VirtualMachineServiceCreateResponse);
+  rpc Delete(VirtualMachineServiceDeleteRequest) returns (VirtualMachineServiceDeleteResponse);
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc OpenStream(stream Chunk) returns (stream Chunk);
+}
+
+message VirtualMachineServiceListTypesResponse {
+  repeated string types = 1;
+}
+
+message VirtualMachineServiceListOperatingSystemsResponse {
+  repeated string operating_systems = 1;
+}
+
+message VirtualMachineServiceListResponse {
+  repeated VirtualMachine vms = 1;
+}
+
+message VirtualMachine {
+  string name = 1;
+  string status = 2;
+}
+
+message VirtualMachineServiceListRequest {
+  string project = 1;
+}
+
+message VirtualMachineServiceCreateRequest {
+  string project = 1;
+  string name = 2;
+  string operating_system = 3;
+  string machine_type = 4;
+}
+
+message VirtualMachineServiceCreateResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message VirtualMachineServiceDeleteRequest {
+  string project = 1;
+  string name = 2;
+}
+
+message VirtualMachineServiceDeleteResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message Chunk {
+  bytes chunk = 1;
+}
+
+message SerialStream {
+  string project = 1;
+  string name = 2;
+}
+
+message VncStream {
+  string project = 1;
+  string name = 2;
+}

@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package ruddur.v1;
+
+import "google/protobuf/empty.proto";
+
+// The project service definition.
+service ProjectService {
+  rpc List(google.protobuf.Empty) returns (ProjectServiceListResponse);
+  rpc Create(ProjectServiceCreateRequest) returns (google.protobuf.Empty);
+  rpc ListUsers(ProjectServiceListUsersRequest) returns (ProjectServiceListUsersResponse);
+  rpc AuthorizeUser(ProjectServiceAuthorizeUserRequest) returns (google.protobuf.Empty);
+  rpc RevokeUser(ProjectServiceRevokeUserRequest) returns (google.protobuf.Empty);
+}
+
+message ProjectServiceListResponse {
+  // Names of the projects.
+  repeated string name = 1;
+}
+
+message ProjectServiceCreateRequest {
+  // Name of the project.
+  string name = 1;
+}
+
+message ProjectServiceListUsersRequest {
+  // Name of the project.
+  string name = 1;
+}
+
+message UserAndRole {
+  string user = 1;
+  string role = 2;
+}
+
+message ProjectServiceListUsersResponse {
+  // Name of the project.
+  string name = 1;
+  // Authorized users.
+  repeated UserAndRole users = 2;
+}
+
+message ProjectServiceAuthorizeUserRequest {
+  // Name of the project.
+  string name = 1;
+  // User to authorize.
+  string user = 2;
+  // New role of user.
+  string role = 3;
+}
+
+message ProjectServiceRevokeUserRequest {
+  // Name of the project.
+  string name = 1;
+  // User to revoke.
+  string user = 2;
+}

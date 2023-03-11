@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package ruddur.v1;
+
+import "ruddur/v1/common.proto";
+
+// The clusters service definition.
+service ClusterService {
+  rpc List(ClusterServiceListRequest) returns (ClusterServiceListResponse);
+  rpc Create(ClusterServiceCreateRequest) returns (ClusterServiceCreateResponse);
+  // TODO: Edit (extend / shrink)
+  rpc Delete(ClusterServiceDeleteRequest) returns (ClusterServiceDeleteResponse);
+  rpc Kubeconfig(KubeconfigRequest) returns (KubeconfigResponse);
+}
+
+message Cluster {
+  string name = 1;
+  string status = 2;
+  string url = 3;
+}
+
+message ClusterServiceListRequest {
+  string project = 1;
+}
+
+message ClusterServiceListResponse {
+  repeated Cluster clusters = 1;
+}
+
+message ClusterServiceCreateRequest {
+  string project = 1;
+  string name = 2;
+  MachineTypeAndAmount control_plane_nodes = 3;
+  repeated MachineTypeAndAmount worker_nodes = 4;
+}
+
+message ClusterServiceCreateResponse {
+  string status = 1;
+  string message = 2;
+  string url = 3;
+}
+
+message ClusterServiceDeleteRequest {
+  string project = 1;
+  string name = 2;
+}
+
+message ClusterServiceDeleteResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message KubeconfigRequest {
+  string project = 1;
+  string name = 2;
+}
+
+message KubeconfigResponse {
+  bytes kubeconfig = 1;
+}
