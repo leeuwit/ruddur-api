@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 service ProjectService {
   rpc List(google.protobuf.Empty) returns (ProjectServiceListResponse);
   rpc Create(ProjectServiceCreateRequest) returns (google.protobuf.Empty);
+  rpc Delete(ProjectServiceDeleteRequest) returns (google.protobuf.Empty);
   rpc ListUsers(ProjectServiceListUsersRequest) returns (ProjectServiceListUsersResponse);
   rpc AuthorizeUser(ProjectServiceAuthorizeUserRequest) returns (google.protobuf.Empty);
   rpc RevokeUser(ProjectServiceRevokeUserRequest) returns (google.protobuf.Empty);
@@ -19,6 +20,11 @@ message ProjectServiceListResponse {
 }
 
 message ProjectServiceCreateRequest {
+  // Name of the project.
+  string name = 1;
+}
+
+message ProjectServiceDeleteRequest {
   // Name of the project.
   string name = 1;
 }
