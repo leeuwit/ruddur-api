@@ -1,0 +1,639 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: Ruddur API
+    contact:
+        name: LeeuwIT
+        url: https://github.com/leeuwit/ruddur-api
+        email: ruddur@leeuwit.nl
+    version: v1
+paths:
+    /v1/machines/available:
+        get:
+            tags:
+                - MachineService
+            operationId: MachineService_ListAvailable
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceListAvailableResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/machines/types:
+        get:
+            tags:
+                - MachineService
+            operationId: MachineService_ListTypes
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceListTypesResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects:
+        get:
+            tags:
+                - ProjectService
+            operationId: ProjectService_List
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProjectServiceListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_Create
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceCreateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content: {}
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{name}:
+        delete:
+            tags:
+                - ProjectService
+            operationId: ProjectService_Delete
+            parameters:
+                - name: name
+                  in: path
+                  description: Name of the project.
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content: {}
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{name}/authorize:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_AuthorizeUser
+            parameters:
+                - name: name
+                  in: path
+                  description: Name of the project.
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceAuthorizeUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content: {}
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{name}/revoke:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_RevokeUser
+            parameters:
+                - name: name
+                  in: path
+                  description: Name of the project.
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceRevokeUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content: {}
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{name}/users:
+        get:
+            tags:
+                - ProjectService
+            operationId: ProjectService_ListUsers
+            parameters:
+                - name: name
+                  in: path
+                  description: Name of the project.
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProjectServiceListUsersResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{project}/clusters:
+        get:
+            tags:
+                - ClusterService
+            operationId: ClusterService_List
+            parameters:
+                - name: project
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClusterServiceListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - ClusterService
+            operationId: ClusterService_Create
+            parameters:
+                - name: project
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ClusterServiceCreateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClusterServiceCreateResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{project}/clusters/{name}:
+        delete:
+            tags:
+                - ClusterService
+            description: 'TODO: Edit (extend / shrink)'
+            operationId: ClusterService_Delete
+            parameters:
+                - name: project
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClusterServiceDeleteResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{project}/clusters/{name}/kubeconfig:
+        get:
+            tags:
+                - ClusterService
+            operationId: ClusterService_Kubeconfig
+            parameters:
+                - name: project
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClusterServiceKubeconfigResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{project}/vms:
+        get:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_List
+            parameters:
+                - name: project
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_Create
+            parameters:
+                - name: project
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/VirtualMachineServiceCreateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceCreateResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/projects/{project}/vms/{name}:
+        delete:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_Delete
+            parameters:
+                - name: project
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceDeleteResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/vms/operatingsystems:
+        get:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_ListOperatingSystems
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceListOperatingSystemsResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/vms/types:
+        get:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_ListTypes
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceListTypesResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+components:
+    schemas:
+        Cluster:
+            type: object
+            properties:
+                name:
+                    type: string
+                status:
+                    type: string
+                url:
+                    type: string
+        ClusterServiceCreateRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
+                controlPlaneNodes:
+                    $ref: '#/components/schemas/MachineTypeAndAmount'
+                workerNodes:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/MachineTypeAndAmount'
+        ClusterServiceCreateResponse:
+            type: object
+            properties:
+                status:
+                    type: string
+                message:
+                    type: string
+                url:
+                    type: string
+        ClusterServiceDeleteResponse:
+            type: object
+            properties:
+                status:
+                    type: string
+                message:
+                    type: string
+        ClusterServiceKubeconfigResponse:
+            type: object
+            properties:
+                kubeconfig:
+                    type: string
+                    format: bytes
+        ClusterServiceListResponse:
+            type: object
+            properties:
+                clusters:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Cluster'
+        GoogleProtobufAny:
+            type: object
+            properties:
+                '@type':
+                    type: string
+                    description: The type of the serialized message.
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        MachineServiceListAvailableResponse:
+            type: object
+            properties:
+                machines:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/MachineTypeAndAmount'
+        MachineServiceListTypesResponse:
+            type: object
+            properties:
+                types:
+                    type: array
+                    items:
+                        type: string
+        MachineTypeAndAmount:
+            type: object
+            properties:
+                type:
+                    type: string
+                amount:
+                    type: integer
+                    format: int32
+        ProjectServiceAuthorizeUserRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
+                user:
+                    type: string
+                    description: User to authorize.
+                role:
+                    type: string
+                    description: New role of user.
+        ProjectServiceCreateRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
+        ProjectServiceListResponse:
+            type: object
+            properties:
+                name:
+                    type: array
+                    items:
+                        type: string
+                    description: Names of the projects.
+        ProjectServiceListUsersResponse:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
+                users:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/UserAndRole'
+                    description: Authorized users.
+        ProjectServiceRevokeUserRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
+                user:
+                    type: string
+                    description: User to revoke.
+        Status:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+                    format: int32
+                message:
+                    type: string
+                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+                details:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GoogleProtobufAny'
+                    description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+        UserAndRole:
+            type: object
+            properties:
+                user:
+                    type: string
+                role:
+                    type: string
+        VirtualMachine:
+            type: object
+            properties:
+                name:
+                    type: string
+                status:
+                    type: string
+        VirtualMachineServiceCreateRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
+                operatingSystem:
+                    type: string
+                machineType:
+                    type: string
+        VirtualMachineServiceCreateResponse:
+            type: object
+            properties:
+                status:
+                    type: string
+                message:
+                    type: string
+        VirtualMachineServiceDeleteResponse:
+            type: object
+            properties:
+                status:
+                    type: string
+                message:
+                    type: string
+        VirtualMachineServiceListOperatingSystemsResponse:
+            type: object
+            properties:
+                operatingSystems:
+                    type: array
+                    items:
+                        type: string
+        VirtualMachineServiceListResponse:
+            type: object
+            properties:
+                vms:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/VirtualMachine'
+        VirtualMachineServiceListTypesResponse:
+            type: object
+            properties:
+                types:
+                    type: array
+                    items:
+                        type: string
+    securitySchemes:
+        openId:
+            type: openIdConnect
+            openIdConnectUrl: https://auth.ruddur.dev/.well-known/openid-configuration
+security:
+    - openId: []
+tags:
+    - name: ClusterService
+      description: The clusters service definition.
+    - name: MachineService
+      description: The machines service definition.
+    - name: ProjectService
+      description: The project service definition.
+    - name: VirtualMachineService
+      description: The virtual machines service definition.

@@ -1,5 +1,8 @@
 version: v1
 name: buf.build/leeuwit/ruddur-api
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/userhub/openapi
 breaking:
   use:
     - FILE

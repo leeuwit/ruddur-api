@@ -3,15 +3,43 @@ syntax = "proto3";
 package ruddur.v1;
 
 import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
 
 // The project service definition.
 service ProjectService {
-  rpc List(google.protobuf.Empty) returns (ProjectServiceListResponse);
-  rpc Create(ProjectServiceCreateRequest) returns (google.protobuf.Empty);
-  rpc Delete(ProjectServiceDeleteRequest) returns (google.protobuf.Empty);
-  rpc ListUsers(ProjectServiceListUsersRequest) returns (ProjectServiceListUsersResponse);
-  rpc AuthorizeUser(ProjectServiceAuthorizeUserRequest) returns (google.protobuf.Empty);
-  rpc RevokeUser(ProjectServiceRevokeUserRequest) returns (google.protobuf.Empty);
+  rpc List(google.protobuf.Empty) returns (ProjectServiceListResponse) {
+    option (google.api.http) = {
+      get: "/v1/projects"
+    };
+  };
+  rpc Create(ProjectServiceCreateRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/projects"
+      body: "*"
+    };
+  };
+  rpc Delete(ProjectServiceDeleteRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/projects/{name}"
+    };
+  };
+  rpc ListUsers(ProjectServiceListUsersRequest) returns (ProjectServiceListUsersResponse) {
+    option (google.api.http) = {
+      get: "/v1/projects/{name}/users"
+    };
+  };
+  rpc AuthorizeUser(ProjectServiceAuthorizeUserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/projects/{name}/authorize"
+      body: "*"
+    };
+  };
+  rpc RevokeUser(ProjectServiceRevokeUserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/projects/{name}/revoke"
+      body: "*"
+    };
+  };
 }
 
 message ProjectServiceListResponse {

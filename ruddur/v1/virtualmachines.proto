@@ -2,15 +2,37 @@ syntax = "proto3";
 
 package ruddur.v1;
 
+import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 // The virtual machines service definition.
 service VirtualMachineService {
-  rpc ListTypes(google.protobuf.Empty) returns (VirtualMachineServiceListTypesResponse);
-  rpc ListOperatingSystems(google.protobuf.Empty) returns (VirtualMachineServiceListOperatingSystemsResponse);
-  rpc List(VirtualMachineServiceListRequest) returns (VirtualMachineServiceListResponse);
-  rpc Create(VirtualMachineServiceCreateRequest) returns (VirtualMachineServiceCreateResponse);
-  rpc Delete(VirtualMachineServiceDeleteRequest) returns (VirtualMachineServiceDeleteResponse);
+  rpc ListTypes(google.protobuf.Empty) returns (VirtualMachineServiceListTypesResponse) {
+    option (google.api.http) = {
+      get: "/v1/vms/types"
+    };
+  };
+  rpc ListOperatingSystems(google.protobuf.Empty) returns (VirtualMachineServiceListOperatingSystemsResponse) {
+    option (google.api.http) = {
+      get: "/v1/vms/operatingsystems"
+    };
+  };
+  rpc List(VirtualMachineServiceListRequest) returns (VirtualMachineServiceListResponse) {
+    option (google.api.http) = {
+      get: "/v1/projects/{project}/vms"
+    };
+  };
+  rpc Create(VirtualMachineServiceCreateRequest) returns (VirtualMachineServiceCreateResponse) {
+    option (google.api.http) = {
+      post: "/v1/projects/{project}/vms"
+      body: "*"
+    };
+  };
+  rpc Delete(VirtualMachineServiceDeleteRequest) returns (VirtualMachineServiceDeleteResponse) {
+    option (google.api.http) = {
+      delete: "/v1/projects/{project}/vms/{name}"
+    };
+  };
   // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
   // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
   // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME

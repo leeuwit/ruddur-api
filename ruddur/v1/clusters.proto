@@ -2,15 +2,33 @@ syntax = "proto3";
 
 package ruddur.v1;
 
+import "google/api/annotations.proto";
 import "ruddur/v1/common.proto";
 
 // The clusters service definition.
 service ClusterService {
-  rpc List(ClusterServiceListRequest) returns (ClusterServiceListResponse);
-  rpc Create(ClusterServiceCreateRequest) returns (ClusterServiceCreateResponse);
+  rpc List(ClusterServiceListRequest) returns (ClusterServiceListResponse) {
+    option (google.api.http) = {
+      get: "/v1/projects/{project}/clusters"
+    };
+  };
+  rpc Create(ClusterServiceCreateRequest) returns (ClusterServiceCreateResponse) {
+    option (google.api.http) = {
+      post: "/v1/projects/{project}/clusters"
+      body: "*"
+    };
+  };
   // TODO: Edit (extend / shrink)
-  rpc Delete(ClusterServiceDeleteRequest) returns (ClusterServiceDeleteResponse);
-  rpc Kubeconfig(KubeconfigRequest) returns (KubeconfigResponse);
+  rpc Delete(ClusterServiceDeleteRequest) returns (ClusterServiceDeleteResponse) {
+    option (google.api.http) = {
+      delete: "/v1/projects/{project}/clusters/{name}"
+    };
+  };
+  rpc Kubeconfig(ClusterServiceKubeconfigRequest) returns (ClusterServiceKubeconfigResponse) {
+    option (google.api.http) = {
+      get: "/v1/projects/{project}/clusters/{name}/kubeconfig"
+    };
+  };
 }
 
 message Cluster {
@@ -50,11 +68,11 @@ message ClusterServiceDeleteResponse {
   string message = 2;
 }
 
-message KubeconfigRequest {
+message ClusterServiceKubeconfigRequest {
   string project = 1;
   string name = 2;
 }
 
-message KubeconfigResponse {
+message ClusterServiceKubeconfigResponse {
   bytes kubeconfig = 1;
 }

@@ -1,0 +1,10 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/leeuwit/ruddur-api
+plugins:
+  - plugin: openapi
+    out: .
+    opt:
+      - default_response=true

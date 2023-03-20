@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package ruddur.v1;
+
+import "openapiv3/annotations.proto";
+
+option (openapi.v3.document) = {
+  info: {
+    title: "Ruddur API";
+    //description: "Ruddur API";
+    version: "v1";
+    contact: {
+      name: "LeeuwIT";
+      url: "https://github.com/leeuwit/ruddur-api";
+      email: "ruddur@leeuwit.nl";
+    }
+  }
+  components: {
+    security_schemes: {
+      additional_properties: [
+        {
+          name: "openId";
+          value: {
+            security_scheme: {
+              type: "openIdConnect";
+              open_id_connect_url: "https://auth.ruddur.dev/.well-known/openid-configuration";
+            }
+          }
+        }
+      ]
+    }
+  }
+  security: {
+    additional_properties: [
+      {
+        name: "openId";
+        value: {
+          //value: "profile"
+        }
+      }
+    ]
+  }
+};
