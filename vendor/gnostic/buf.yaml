@@ -1,0 +1,9 @@
+version: v1
+name: github.com/google/gnostic
+lint:
+  use:
+    - DEFAULT
+  except:
+    - FIELD_LOWER_SNAKE_CASE
+    - FILE_LOWER_SNAKE_CASE
+    - PACKAGE_DIRECTORY_MATCH
