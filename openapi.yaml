@@ -5,8 +5,8 @@ openapi: 3.0.3
 info:
     title: Ruddur API
     contact:
-        name: LeeuwIT
-        url: https://github.com/leeuwit/ruddur-api
+        name: Ruddur
+        url: https://ruddur.dev
         email: ruddur@leeuwit.nl
     version: v1
 paths:
