@@ -9,24 +9,27 @@ import "ruddur/v1/common.proto";
 service ClusterService {
   rpc List(ClusterServiceListRequest) returns (ClusterServiceListResponse) {
     option (google.api.http) = {
-      get: "/v1/projects/{project}/clusters"
+      post: "/ruddur.v1.ClusterService/List"
+      body: "*"
     };
   };
   rpc Create(ClusterServiceCreateRequest) returns (ClusterServiceCreateResponse) {
     option (google.api.http) = {
-      post: "/v1/projects/{project}/clusters"
+      post: "/ruddur.v1.ClusterService/Create"
       body: "*"
     };
   };
   // TODO: Edit (extend / shrink)
   rpc Delete(ClusterServiceDeleteRequest) returns (ClusterServiceDeleteResponse) {
     option (google.api.http) = {
-      delete: "/v1/projects/{project}/clusters/{name}"
+      post: "/ruddur.v1.ClusterService/Delete"
+      body: "*"
     };
   };
   rpc Kubeconfig(ClusterServiceKubeconfigRequest) returns (ClusterServiceKubeconfigResponse) {
     option (google.api.http) = {
-      get: "/v1/projects/{project}/clusters/{name}/kubeconfig"
+      post: "/ruddur.v1.ClusterService/Kubeconfig"
+      body: "*"
     };
   };
 }

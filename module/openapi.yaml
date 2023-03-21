@@ -10,217 +10,11 @@ info:
         email: ruddur@leeuwit.nl
     version: v1
 paths:
-    /v1/machines/available:
-        get:
-            tags:
-                - MachineService
-            operationId: MachineService_ListAvailable
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/MachineServiceListAvailableResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/machines/types:
-        get:
-            tags:
-                - MachineService
-            operationId: MachineService_ListTypes
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/MachineServiceListTypesResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/projects:
-        get:
-            tags:
-                - ProjectService
-            operationId: ProjectService_List
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ProjectServiceListResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-        post:
-            tags:
-                - ProjectService
-            operationId: ProjectService_Create
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/ProjectServiceCreateRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content: {}
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/projects/{name}:
-        delete:
-            tags:
-                - ProjectService
-            operationId: ProjectService_Delete
-            parameters:
-                - name: name
-                  in: path
-                  description: Name of the project.
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content: {}
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/projects/{name}/authorize:
-        post:
-            tags:
-                - ProjectService
-            operationId: ProjectService_AuthorizeUser
-            parameters:
-                - name: name
-                  in: path
-                  description: Name of the project.
-                  required: true
-                  schema:
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/ProjectServiceAuthorizeUserRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content: {}
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/projects/{name}/revoke:
-        post:
-            tags:
-                - ProjectService
-            operationId: ProjectService_RevokeUser
-            parameters:
-                - name: name
-                  in: path
-                  description: Name of the project.
-                  required: true
-                  schema:
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/ProjectServiceRevokeUserRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content: {}
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/projects/{name}/users:
-        get:
-            tags:
-                - ProjectService
-            operationId: ProjectService_ListUsers
-            parameters:
-                - name: name
-                  in: path
-                  description: Name of the project.
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ProjectServiceListUsersResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /v1/projects/{project}/clusters:
-        get:
-            tags:
-                - ClusterService
-            operationId: ClusterService_List
-            parameters:
-                - name: project
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ClusterServiceListResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ClusterService/Create:
         post:
             tags:
                 - ClusterService
             operationId: ClusterService_Create
-            parameters:
-                - name: project
-                  in: path
-                  required: true
-                  schema:
-                    type: string
             requestBody:
                 content:
                     application/json:
@@ -240,23 +34,18 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /v1/projects/{project}/clusters/{name}:
-        delete:
+    /ruddur.v1.ClusterService/Delete:
+        post:
             tags:
                 - ClusterService
             description: 'TODO: Edit (extend / shrink)'
             operationId: ClusterService_Delete
-            parameters:
-                - name: project
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: name
-                  in: path
-                  required: true
-                  schema:
-                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ClusterServiceDeleteRequest'
+                required: true
             responses:
                 "200":
                     description: OK
@@ -270,22 +59,17 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /v1/projects/{project}/clusters/{name}/kubeconfig:
-        get:
+    /ruddur.v1.ClusterService/Kubeconfig:
+        post:
             tags:
                 - ClusterService
             operationId: ClusterService_Kubeconfig
-            parameters:
-                - name: project
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: name
-                  in: path
-                  required: true
-                  schema:
-                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ClusterServiceKubeconfigRequest'
+                required: true
             responses:
                 "200":
                     description: OK
@@ -299,40 +83,227 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /v1/projects/{project}/vms:
-        get:
+    /ruddur.v1.ClusterService/List:
+        post:
             tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_List
-            parameters:
-                - name: project
-                  in: path
-                  required: true
-                  schema:
-                    type: string
+                - ClusterService
+            operationId: ClusterService_List
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ClusterServiceListRequest'
+                required: true
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceListResponse'
+                                $ref: '#/components/schemas/ClusterServiceListResponse'
                 default:
                     description: Default error response
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
+    /ruddur.v1.MachineService/ListAvailable:
+        post:
+            tags:
+                - MachineService
+            operationId: MachineService_ListAvailable
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Empty'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceListAvailableResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.MachineService/ListTypes:
+        post:
+            tags:
+                - MachineService
+            operationId: MachineService_ListTypes
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Empty'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceListTypesResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/AuthorizeUser:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_AuthorizeUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceAuthorizeUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Empty'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/Create:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_Create
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceCreateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Empty'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/Delete:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_Delete
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceDeleteRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Empty'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/List:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_List
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Empty'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProjectServiceListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/ListUsers:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_ListUsers
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceListUsersRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProjectServiceListUsersResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/RevokeUser:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_RevokeUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceRevokeUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Empty'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.VirtualMachineService/Create:
         post:
             tags:
                 - VirtualMachineService
             operationId: VirtualMachineService_Create
-            parameters:
-                - name: project
-                  in: path
-                  required: true
-                  schema:
-                    type: string
             requestBody:
                 content:
                     application/json:
@@ -352,22 +323,17 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /v1/projects/{project}/vms/{name}:
-        delete:
+    /ruddur.v1.VirtualMachineService/Delete:
+        post:
             tags:
                 - VirtualMachineService
             operationId: VirtualMachineService_Delete
-            parameters:
-                - name: project
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-                - name: name
-                  in: path
-                  required: true
-                  schema:
-                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/VirtualMachineServiceDeleteRequest'
+                required: true
             responses:
                 "200":
                     description: OK
@@ -381,11 +347,41 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /v1/vms/operatingsystems:
-        get:
+    /ruddur.v1.VirtualMachineService/List:
+        post:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_List
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/VirtualMachineServiceListRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.VirtualMachineService/ListOperatingSystems:
+        post:
             tags:
                 - VirtualMachineService
             operationId: VirtualMachineService_ListOperatingSystems
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Empty'
+                required: true
             responses:
                 "200":
                     description: OK
@@ -399,11 +395,17 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /v1/vms/types:
-        get:
+    /ruddur.v1.VirtualMachineService/ListTypes:
+        post:
             tags:
                 - VirtualMachineService
             operationId: VirtualMachineService_ListTypes
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Empty'
+                required: true
             responses:
                 "200":
                     description: OK
@@ -450,6 +452,13 @@ components:
                     type: string
                 url:
                     type: string
+        ClusterServiceDeleteRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
         ClusterServiceDeleteResponse:
             type: object
             properties:
@@ -457,12 +466,24 @@ components:
                     type: string
                 message:
                     type: string
+        ClusterServiceKubeconfigRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
         ClusterServiceKubeconfigResponse:
             type: object
             properties:
                 kubeconfig:
                     type: string
                     format: bytes
+        ClusterServiceListRequest:
+            type: object
+            properties:
+                project:
+                    type: string
         ClusterServiceListResponse:
             type: object
             properties:
@@ -470,6 +491,9 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/Cluster'
+        Empty:
+            type: object
+            properties: {}
         GoogleProtobufAny:
             type: object
             properties:
@@ -518,6 +542,12 @@ components:
                 name:
                     type: string
                     description: Name of the project.
+        ProjectServiceDeleteRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
         ProjectServiceListResponse:
             type: object
             properties:
@@ -526,6 +556,12 @@ components:
                     items:
                         type: string
                     description: Names of the projects.
+        ProjectServiceListUsersRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
         ProjectServiceListUsersResponse:
             type: object
             properties:
@@ -594,6 +630,13 @@ components:
                     type: string
                 message:
                     type: string
+        VirtualMachineServiceDeleteRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
         VirtualMachineServiceDeleteResponse:
             type: object
             properties:
@@ -608,6 +651,11 @@ components:
                     type: array
                     items:
                         type: string
+        VirtualMachineServiceListRequest:
+            type: object
+            properties:
+                project:
+                    type: string
         VirtualMachineServiceListResponse:
             type: object
             properties:

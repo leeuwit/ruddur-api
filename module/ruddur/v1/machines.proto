@@ -2,20 +2,21 @@ syntax = "proto3";
 
 package ruddur.v1;
 
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "ruddur/v1/common.proto";
 
 // The machines service definition.
 service MachineService {
-  rpc ListTypes(google.protobuf.Empty) returns (MachineServiceListTypesResponse) {
+  rpc ListTypes(Empty) returns (MachineServiceListTypesResponse) {
     option (google.api.http) = {
-      get: "/v1/machines/types"
+      post: "/ruddur.v1.MachineService/ListTypes"
+      body: "*"
     };
   };
-  rpc ListAvailable(google.protobuf.Empty) returns (MachineServiceListAvailableResponse) {
+  rpc ListAvailable(Empty) returns (MachineServiceListAvailableResponse) {
     option (google.api.http) = {
-      get: "/v1/machines/available"
+      post: "/ruddur.v1.MachineService/ListAvailable"
+      body: "*"
     };
   };
 }

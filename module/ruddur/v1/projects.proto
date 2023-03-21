@@ -2,41 +2,44 @@ syntax = "proto3";
 
 package ruddur.v1;
 
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "ruddur/v1/common.proto";
 
 // The project service definition.
 service ProjectService {
-  rpc List(google.protobuf.Empty) returns (ProjectServiceListResponse) {
+  rpc List(Empty) returns (ProjectServiceListResponse) {
     option (google.api.http) = {
-      get: "/v1/projects"
-    };
-  };
-  rpc Create(ProjectServiceCreateRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v1/projects"
+      post: "/ruddur.v1.ProjectService/List"
       body: "*"
     };
   };
-  rpc Delete(ProjectServiceDeleteRequest) returns (google.protobuf.Empty) {
+  rpc Create(ProjectServiceCreateRequest) returns (Empty) {
     option (google.api.http) = {
-      delete: "/v1/projects/{name}"
+      post: "/ruddur.v1.ProjectService/Create"
+      body: "*"
+    };
+  };
+  rpc Delete(ProjectServiceDeleteRequest) returns (Empty) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/Delete"
+      body: "*"
     };
   };
   rpc ListUsers(ProjectServiceListUsersRequest) returns (ProjectServiceListUsersResponse) {
     option (google.api.http) = {
-      get: "/v1/projects/{name}/users"
-    };
-  };
-  rpc AuthorizeUser(ProjectServiceAuthorizeUserRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v1/projects/{name}/authorize"
+      post: "/ruddur.v1.ProjectService/ListUsers"
       body: "*"
     };
   };
-  rpc RevokeUser(ProjectServiceRevokeUserRequest) returns (google.protobuf.Empty) {
+  rpc AuthorizeUser(ProjectServiceAuthorizeUserRequest) returns (Empty) {
     option (google.api.http) = {
-      post: "/v1/projects/{name}/revoke"
+      post: "/ruddur.v1.ProjectService/AuthorizeUser"
+      body: "*"
+    };
+  };
+  rpc RevokeUser(ProjectServiceRevokeUserRequest) returns (Empty) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/RevokeUser"
       body: "*"
     };
   };
