@@ -612,6 +612,10 @@ components:
                     type: string
                 status:
                     type: string
+                operatingSystem:
+                    type: string
+                machineType:
+                    type: string
         VirtualMachineServiceCreateRequest:
             type: object
             properties:

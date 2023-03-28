@@ -58,6 +58,8 @@ message VirtualMachineServiceListResponse {
 message VirtualMachine {
   string name = 1;
   string status = 2;
+  string operating_system = 3;
+  string machine_type = 4;
 }
 
 message VirtualMachineServiceListRequest {
