@@ -37,10 +37,6 @@ service VirtualMachineService {
       body: "*"
     };
   };
-  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
-  // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
-  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
-  rpc OpenStream(stream Chunk) returns (stream Chunk);
 }
 
 message VirtualMachineServiceListTypesResponse {
@@ -86,18 +82,4 @@ message VirtualMachineServiceDeleteRequest {
 message VirtualMachineServiceDeleteResponse {
   string status = 1;
   string message = 2;
-}
-
-message Chunk {
-  bytes chunk = 1;
-}
-
-message SerialStream {
-  string project = 1;
-  string name = 2;
-}
-
-message VncStream {
-  string project = 1;
-  string name = 2;
 }
