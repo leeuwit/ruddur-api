@@ -583,8 +583,6 @@ components:
                     type: string
                 status:
                     type: string
-                image:
-                    type: string
                 cpu:
                     type: string
                 memory:
@@ -597,8 +595,6 @@ components:
                 project:
                     type: string
                 name:
-                    type: string
-                image:
                     type: string
                 cpu:
                     type: string
