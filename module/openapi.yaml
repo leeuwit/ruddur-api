@@ -371,54 +371,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /ruddur.v1.VirtualMachineService/ListOperatingSystems:
-        post:
-            tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_ListOperatingSystems
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/Empty'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceListOperatingSystemsResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /ruddur.v1.VirtualMachineService/ListTypes:
-        post:
-            tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_ListTypes
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/Empty'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceListTypesResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
 components:
     schemas:
         Cluster:
@@ -430,6 +382,16 @@ components:
                     type: string
                 url:
                     type: string
+        ClusterMachineSet:
+            type: object
+            properties:
+                type:
+                    type: string
+                virtual:
+                    $ref: '#/components/schemas/ClusterVirtualMachine'
+                amount:
+                    type: integer
+                    format: int32
         ClusterServiceCreateRequest:
             type: object
             properties:
@@ -438,11 +400,11 @@ components:
                 name:
                     type: string
                 controlPlaneNodes:
-                    $ref: '#/components/schemas/MachineTypeAndAmount'
+                    $ref: '#/components/schemas/ClusterMachineSet'
                 workerNodes:
                     type: array
                     items:
-                        $ref: '#/components/schemas/MachineTypeAndAmount'
+                        $ref: '#/components/schemas/ClusterMachineSet'
         ClusterServiceCreateResponse:
             type: object
             properties:
@@ -491,6 +453,15 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/Cluster'
+        ClusterVirtualMachine:
+            type: object
+            properties:
+                cpu:
+                    type: string
+                memory:
+                    type: string
+                storage:
+                    type: string
         Empty:
             type: object
             properties: {}
@@ -612,9 +583,13 @@ components:
                     type: string
                 status:
                     type: string
-                operatingSystem:
+                image:
                     type: string
-                machineType:
+                cpu:
+                    type: string
+                memory:
+                    type: string
+                storage:
                     type: string
         VirtualMachineServiceCreateRequest:
             type: object
@@ -623,9 +598,13 @@ components:
                     type: string
                 name:
                     type: string
-                operatingSystem:
+                image:
                     type: string
-                machineType:
+                cpu:
+                    type: string
+                memory:
+                    type: string
+                storage:
                     type: string
         VirtualMachineServiceCreateResponse:
             type: object
@@ -648,13 +627,6 @@ components:
                     type: string
                 message:
                     type: string
-        VirtualMachineServiceListOperatingSystemsResponse:
-            type: object
-            properties:
-                operatingSystems:
-                    type: array
-                    items:
-                        type: string
         VirtualMachineServiceListRequest:
             type: object
             properties:
@@ -667,13 +639,6 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/VirtualMachine'
-        VirtualMachineServiceListTypesResponse:
-            type: object
-            properties:
-                types:
-                    type: array
-                    items:
-                        type: string
     securitySchemes:
         openId:
             type: openIdConnect

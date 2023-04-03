@@ -21,6 +21,11 @@ service MachineService {
   };
 }
 
+message MachineTypeAndAmount {
+  string type = 1;
+  int32 amount = 2;
+}
+
 message MachineServiceListTypesResponse {
   repeated string types = 1;
 }

@@ -4,8 +4,3 @@ package ruddur.v1;
 
 message Empty {
 }
-
-message MachineTypeAndAmount {
-  string type = 1;
-  int32 amount = 2;
-}

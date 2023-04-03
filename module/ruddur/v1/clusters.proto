@@ -40,6 +40,20 @@ message Cluster {
   string url = 3;
 }
 
+message ClusterVirtualMachine {
+  string cpu = 4;
+  string memory = 5;
+  string storage = 6;
+}
+
+message ClusterMachineSet {
+  oneof machine {
+    string type = 1;
+    ClusterVirtualMachine virtual = 2;
+  }
+  int32 amount = 3;
+}
+
 message ClusterServiceListRequest {
   string project = 1;
 }
@@ -51,8 +65,8 @@ message ClusterServiceListResponse {
 message ClusterServiceCreateRequest {
   string project = 1;
   string name = 2;
-  MachineTypeAndAmount control_plane_nodes = 3;
-  repeated MachineTypeAndAmount worker_nodes = 4;
+  ClusterMachineSet control_plane_nodes = 3;
+  repeated ClusterMachineSet worker_nodes = 4;
 }
 
 message ClusterServiceCreateResponse {
