@@ -588,7 +588,9 @@ components:
                 memory:
                     type: string
                 storage:
-                    type: string
+                    type: array
+                    items:
+                        type: string
         VirtualMachineServiceCreateRequest:
             type: object
             properties:
@@ -601,7 +603,9 @@ components:
                 memory:
                     type: string
                 storage:
-                    type: string
+                    type: array
+                    items:
+                        type: string
         VirtualMachineServiceCreateResponse:
             type: object
             properties:
