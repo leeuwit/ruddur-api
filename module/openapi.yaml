@@ -591,6 +591,8 @@ components:
                     type: array
                     items:
                         type: string
+                boot:
+                    type: string
         VirtualMachineServiceCreateRequest:
             type: object
             properties:
@@ -606,6 +608,8 @@ components:
                     type: array
                     items:
                         type: string
+                boot:
+                    type: string
         VirtualMachineServiceCreateResponse:
             type: object
             properties:
