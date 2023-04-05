@@ -37,6 +37,7 @@ message VirtualMachine {
   string cpu = 3;
   string memory = 4;
   repeated string storage = 5;
+  string boot = 6;
 }
 
 message VirtualMachineServiceListRequest {
@@ -49,6 +50,7 @@ message VirtualMachineServiceCreateRequest {
   string cpu = 3;
   string memory = 4;
   repeated string storage = 5;
+  string boot = 6;
 }
 
 message VirtualMachineServiceCreateResponse {
