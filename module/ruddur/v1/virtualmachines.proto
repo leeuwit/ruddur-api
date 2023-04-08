@@ -7,6 +7,12 @@ import "ruddur/v1/common.proto";
 
 // The virtual machines service definition.
 service VirtualMachineService {
+  rpc Status(VirtualMachineServiceStatusRequest) returns (stream VirtualMachineServiceStatusResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.VirtualMachineService/Status"
+      body: "*"
+    };
+  };
   rpc List(VirtualMachineServiceListRequest) returns (VirtualMachineServiceListResponse) {
     option (google.api.http) = {
       post: "/ruddur.v1.VirtualMachineService/List"
@@ -27,10 +33,6 @@ service VirtualMachineService {
   };
 }
 
-message VirtualMachineServiceListResponse {
-  repeated VirtualMachine vms = 1;
-}
-
 message VirtualMachine {
   string name = 1;
   string status = 2;
@@ -40,8 +42,20 @@ message VirtualMachine {
   string boot = 6;
 }
 
+message VirtualMachineServiceStatusRequest {
+  string project = 1;
+}
+
+message VirtualMachineServiceStatusResponse {
+  string status = 1;
+}
+
 message VirtualMachineServiceListRequest {
   string project = 1;
+}
+
+message VirtualMachineServiceListResponse {
+  repeated VirtualMachine vms = 1;
 }
 
 message VirtualMachineServiceCreateRequest {
