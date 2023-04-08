@@ -371,6 +371,30 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
+    /ruddur.v1.VirtualMachineService/Status:
+        post:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_Status
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/VirtualMachineServiceStatusRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceStatusResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
 components:
     schemas:
         Cluster:
@@ -643,6 +667,18 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/VirtualMachine'
+        VirtualMachineServiceStatusRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
+        VirtualMachineServiceStatusResponse:
+            type: object
+            properties:
+                status:
+                    type: string
     securitySchemes:
         openId:
             type: openIdConnect
