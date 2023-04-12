@@ -2,6 +2,7 @@ version: v1
 name: buf.build/leeuwit/ruddur-api
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/gnostic/gnostic
 breaking:
   use:
     - FILE

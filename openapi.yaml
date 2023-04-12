@@ -116,7 +116,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Empty'
+                            $ref: '#/components/schemas/MachineServiceListAvailableRequest'
                 required: true
             responses:
                 "200":
@@ -140,7 +140,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Empty'
+                            $ref: '#/components/schemas/MachineServiceListTypesRequest'
                 required: true
             responses:
                 "200":
@@ -155,16 +155,16 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /ruddur.v1.ProjectService/AuthorizeUser:
+    /ruddur.v1.ProjectService/Authorize:
         post:
             tags:
                 - ProjectService
-            operationId: ProjectService_AuthorizeUser
+            operationId: ProjectService_Authorize
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/ProjectServiceAuthorizeUserRequest'
+                            $ref: '#/components/schemas/ProjectServiceAuthorizeRequest'
                 required: true
             responses:
                 "200":
@@ -172,7 +172,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Empty'
+                                $ref: '#/components/schemas/ProjectServiceAuthorizeResponse'
                 default:
                     description: Default error response
                     content:
@@ -196,7 +196,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Empty'
+                                $ref: '#/components/schemas/ProjectServiceCreateResponse'
                 default:
                     description: Default error response
                     content:
@@ -220,7 +220,31 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Empty'
+                                $ref: '#/components/schemas/ProjectServiceDeleteResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/Get:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_Get
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceGetRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProjectServiceGetResponse'
                 default:
                     description: Default error response
                     content:
@@ -236,7 +260,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Empty'
+                            $ref: '#/components/schemas/ProjectServiceListRequest'
                 required: true
             responses:
                 "200":
@@ -251,16 +275,16 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /ruddur.v1.ProjectService/ListUsers:
+    /ruddur.v1.ProjectService/Revoke:
         post:
             tags:
                 - ProjectService
-            operationId: ProjectService_ListUsers
+            operationId: ProjectService_Revoke
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/ProjectServiceListUsersRequest'
+                            $ref: '#/components/schemas/ProjectServiceRevokeRequest'
                 required: true
             responses:
                 "200":
@@ -268,31 +292,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ProjectServiceListUsersResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /ruddur.v1.ProjectService/RevokeUser:
-        post:
-            tags:
-                - ProjectService
-            operationId: ProjectService_RevokeUser
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/ProjectServiceRevokeUserRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Empty'
+                                $ref: '#/components/schemas/ProjectServiceRevokeResponse'
                 default:
                     description: Default error response
                     content:
@@ -486,9 +486,6 @@ components:
                     type: string
                 storage:
                     type: string
-        Empty:
-            type: object
-            properties: {}
         GoogleProtobufAny:
             type: object
             properties:
@@ -497,6 +494,9 @@ components:
                     description: The type of the serialized message.
             additionalProperties: true
             description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        MachineServiceListAvailableRequest:
+            type: object
+            properties: {}
         MachineServiceListAvailableResponse:
             type: object
             properties:
@@ -504,6 +504,9 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/MachineTypeAndAmount'
+        MachineServiceListTypesRequest:
+            type: object
+            properties: {}
         MachineServiceListTypesResponse:
             type: object
             properties:
@@ -519,7 +522,7 @@ components:
                 amount:
                     type: integer
                     format: int32
-        ProjectServiceAuthorizeUserRequest:
+        ProjectServiceAuthorizeRequest:
             type: object
             properties:
                 name:
@@ -531,7 +534,16 @@ components:
                 role:
                     type: string
                     description: New role of user.
+        ProjectServiceAuthorizeResponse:
+            type: object
+            properties: {}
         ProjectServiceCreateRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
+        ProjectServiceCreateResponse:
             type: object
             properties:
                 name:
@@ -543,21 +555,19 @@ components:
                 name:
                     type: string
                     description: Name of the project.
-        ProjectServiceListResponse:
-            type: object
-            properties:
-                name:
-                    type: array
-                    items:
-                        type: string
-                    description: Names of the projects.
-        ProjectServiceListUsersRequest:
+        ProjectServiceDeleteResponse:
             type: object
             properties:
                 name:
                     type: string
                     description: Name of the project.
-        ProjectServiceListUsersResponse:
+        ProjectServiceGetRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project.
+        ProjectServiceGetResponse:
             type: object
             properties:
                 name:
@@ -568,7 +578,18 @@ components:
                     items:
                         $ref: '#/components/schemas/UserAndRole'
                     description: Authorized users.
-        ProjectServiceRevokeUserRequest:
+        ProjectServiceListRequest:
+            type: object
+            properties: {}
+        ProjectServiceListResponse:
+            type: object
+            properties:
+                name:
+                    type: array
+                    items:
+                        type: string
+                    description: Names of the projects.
+        ProjectServiceRevokeRequest:
             type: object
             properties:
                 name:
@@ -577,6 +598,9 @@ components:
                 user:
                     type: string
                     description: User to revoke.
+        ProjectServiceRevokeResponse:
+            type: object
+            properties: {}
         Status:
             type: object
             properties:

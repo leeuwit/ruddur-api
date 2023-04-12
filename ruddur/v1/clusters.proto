@@ -3,7 +3,6 @@ syntax = "proto3";
 package ruddur.v1;
 
 import "google/api/annotations.proto";
-import "ruddur/v1/common.proto";
 
 // The clusters service definition.
 service ClusterService {

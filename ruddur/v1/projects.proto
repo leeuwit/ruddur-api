@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package ruddur.v1;
+
+import "google/api/annotations.proto";
+
+// The project service definition.
+service ProjectService {
+  rpc List(ProjectServiceListRequest) returns (ProjectServiceListResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/List"
+      body: "*"
+    };
+  };
+  rpc Get(ProjectServiceGetRequest) returns (ProjectServiceGetResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/Get"
+      body: "*"
+    };
+  };
+  rpc Create(ProjectServiceCreateRequest) returns (ProjectServiceCreateResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/Create"
+      body: "*"
+    };
+  };
+  rpc Delete(ProjectServiceDeleteRequest) returns (ProjectServiceDeleteResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/Delete"
+      body: "*"
+    };
+  };
+  rpc Authorize(ProjectServiceAuthorizeRequest) returns (ProjectServiceAuthorizeResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/Authorize"
+      body: "*"
+    };
+  };
+  rpc Revoke(ProjectServiceRevokeRequest) returns (ProjectServiceRevokeResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/Revoke"
+      body: "*"
+    };
+  };
+}
+
+message ProjectServiceListRequest {
+}
+
+message ProjectServiceListResponse {
+  // Names of the projects.
+  repeated string name = 1;
+}
+
+message UserAndRole {
+  string user = 1;
+  string role = 2;
+}
+
+message ProjectServiceGetRequest {
+  // Name of the project.
+  string name = 1;
+}
+
+message ProjectServiceGetResponse {
+  // Name of the project.
+  string name = 1;
+  // Authorized users.
+  repeated UserAndRole users = 2;
+}
+
+message ProjectServiceCreateRequest {
+  // Name of the project.
+  string name = 1;
+}
+
+message ProjectServiceCreateResponse {
+}
+
+message ProjectServiceDeleteRequest {
+  // Name of the project.
+  string name = 1;
+}
+
+message ProjectServiceDeleteResponse {
+}
+
+message ProjectServiceAuthorizeRequest {
+  // Name of the project.
+  string name = 1;
+  // User to authorize.
+  string user = 2;
+  // New role of user.
+  string role = 3;
+}
+
+message ProjectServiceAuthorizeResponse {
+}
+
+message ProjectServiceRevokeRequest {
+  // Name of the project.
+  string name = 1;
+  // User to revoke.
+  string user = 2;
+}
+
+message ProjectServiceRevokeResponse {
+}

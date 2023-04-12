@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package ruddur.v1;
 
-import "openapiv3/annotations.proto";
+import "gnostic/openapi/v3/annotations.proto";
 
-option (openapi.v3.document) = {
+option (gnostic.openapi.v3.document) = {
   info: {
     title: "Ruddur API";
     //description: "Ruddur API";
