@@ -18,6 +18,12 @@ service ProjectService {
       body: "*"
     };
   };
+  rpc Register(ProjectServiceRegisterRequest) returns (ProjectServiceRegisterResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.ProjectService/Register"
+      body: "*"
+    };
+  };
   rpc Create(ProjectServiceCreateRequest) returns (ProjectServiceCreateResponse) {
     option (google.api.http) = {
       post: "/ruddur.v1.ProjectService/Create"
@@ -52,8 +58,13 @@ message ProjectServiceListResponse {
   repeated string name = 1;
 }
 
-message UserAndRole {
-  string user = 1;
+message EmailAndRole {
+  string email = 1;
+  string role = 2;
+}
+
+message DomainAndRole {
+  string domain = 1;
   string role = 2;
 }
 
@@ -65,8 +76,24 @@ message ProjectServiceGetRequest {
 message ProjectServiceGetResponse {
   // Name of the project.
   string name = 1;
-  // Authorized users.
-  repeated UserAndRole users = 2;
+  // Authorized emails.
+  repeated EmailAndRole emails = 2;
+}
+
+message ProjectServiceRegisterRequest {
+  // Name of the project, also used as the subdomain.
+  string name = 1;
+  // First name of contact person.
+  string first_name = 2;
+  // Last name of contact person.
+  string last_name = 3;
+  // Email address of contact person.
+  string email = 4;
+  // Company, optional.
+  string company = 5;
+}
+
+message ProjectServiceRegisterResponse {
 }
 
 message ProjectServiceCreateRequest {
@@ -88,9 +115,11 @@ message ProjectServiceDeleteResponse {
 message ProjectServiceAuthorizeRequest {
   // Name of the project.
   string name = 1;
-  // User to authorize.
-  string user = 2;
-  // New role of user.
+  // Email to authorize, can be a wildcard.
+  // Example to authorize a single user: john.doe@example.com
+  // Example to authorize all users in a domain: @example.com
+  string email = 2;
+  // Role to authorize.
   string role = 3;
 }
 
@@ -100,8 +129,8 @@ message ProjectServiceAuthorizeResponse {
 message ProjectServiceRevokeRequest {
   // Name of the project.
   string name = 1;
-  // User to revoke.
-  string user = 2;
+  // Email to authorize, can be a wildcard.
+  string email = 2;
 }
 
 message ProjectServiceRevokeResponse {

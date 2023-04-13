@@ -275,6 +275,30 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
+    /ruddur.v1.ProjectService/Register:
+        post:
+            tags:
+                - ProjectService
+            operationId: ProjectService_Register
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ProjectServiceRegisterRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProjectServiceRegisterResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
     /ruddur.v1.ProjectService/Revoke:
         post:
             tags:
@@ -486,6 +510,13 @@ components:
                     type: string
                 storage:
                     type: string
+        EmailAndRole:
+            type: object
+            properties:
+                email:
+                    type: string
+                role:
+                    type: string
         GoogleProtobufAny:
             type: object
             properties:
@@ -528,12 +559,12 @@ components:
                 name:
                     type: string
                     description: Name of the project.
-                user:
+                email:
                     type: string
-                    description: User to authorize.
+                    description: 'Email to authorize, can be a wildcard. Example to authorize a single user: john.doe@example.com Example to authorize all users in a domain: @example.com'
                 role:
                     type: string
-                    description: New role of user.
+                    description: Role to authorize.
         ProjectServiceAuthorizeResponse:
             type: object
             properties: {}
@@ -545,10 +576,7 @@ components:
                     description: Name of the project.
         ProjectServiceCreateResponse:
             type: object
-            properties:
-                name:
-                    type: string
-                    description: Name of the project.
+            properties: {}
         ProjectServiceDeleteRequest:
             type: object
             properties:
@@ -557,10 +585,7 @@ components:
                     description: Name of the project.
         ProjectServiceDeleteResponse:
             type: object
-            properties:
-                name:
-                    type: string
-                    description: Name of the project.
+            properties: {}
         ProjectServiceGetRequest:
             type: object
             properties:
@@ -573,11 +598,11 @@ components:
                 name:
                     type: string
                     description: Name of the project.
-                users:
+                emails:
                     type: array
                     items:
-                        $ref: '#/components/schemas/UserAndRole'
-                    description: Authorized users.
+                        $ref: '#/components/schemas/EmailAndRole'
+                    description: Authorized emails.
         ProjectServiceListRequest:
             type: object
             properties: {}
@@ -589,15 +614,36 @@ components:
                     items:
                         type: string
                     description: Names of the projects.
+        ProjectServiceRegisterRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the project, also used as the subdomain.
+                firstName:
+                    type: string
+                    description: First name of contact person.
+                lastName:
+                    type: string
+                    description: Last name of contact person.
+                email:
+                    type: string
+                    description: Email address of contact person.
+                company:
+                    type: string
+                    description: Company, optional.
+        ProjectServiceRegisterResponse:
+            type: object
+            properties: {}
         ProjectServiceRevokeRequest:
             type: object
             properties:
                 name:
                     type: string
                     description: Name of the project.
-                user:
+                email:
                     type: string
-                    description: User to revoke.
+                    description: Email to authorize, can be a wildcard.
         ProjectServiceRevokeResponse:
             type: object
             properties: {}
@@ -617,13 +663,6 @@ components:
                         $ref: '#/components/schemas/GoogleProtobufAny'
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
             description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
-        UserAndRole:
-            type: object
-            properties:
-                user:
-                    type: string
-                role:
-                    type: string
         VirtualMachine:
             type: object
             properties:
