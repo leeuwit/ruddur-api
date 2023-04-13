@@ -3,7 +3,17 @@ managed:
   enabled: true
   go_package_prefix:
     default: github.com/leeuwit/ruddur-api
+    except:
+      - buf.build/googleapis/googleapis
 plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: .
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/bufbuild/connect-go
+    out: .
+    opt:
+      - paths=source_relative
   - plugin: openapi
     out: .
     opt:
