@@ -15,3 +15,7 @@ buf generate
 rm ruddur/v1/openapi.pb.go
 sed -i 's|_ "google.golang.org/genproto/googleapis/api/annotations"||g' ruddur/v1/*.go
 go mod tidy
+go fmt ./...
+
+# Push to BSR if necessary
+buf push
