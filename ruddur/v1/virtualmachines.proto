@@ -6,9 +6,9 @@ import "google/api/annotations.proto";
 
 // The virtual machines service definition.
 service VirtualMachineService {
-  rpc Status(VirtualMachineServiceStatusRequest) returns (stream VirtualMachineServiceStatusResponse) {
+  rpc Get(VirtualMachineServiceGetRequest) returns (stream VirtualMachineServiceGetResponse) {
     option (google.api.http) = {
-      post: "/ruddur.v1.VirtualMachineService/Status"
+      post: "/ruddur.v1.VirtualMachineService/Get"
       body: "*"
     };
   };
@@ -39,15 +39,16 @@ message VirtualMachine {
   string memory = 4;
   repeated string storage = 5;
   string boot = 6;
+  string cloud_init = 7;
 }
 
-message VirtualMachineServiceStatusRequest {
+message VirtualMachineServiceGetRequest {
   string project = 1;
   string name = 2;
 }
 
-message VirtualMachineServiceStatusResponse {
-  string status = 1;
+message VirtualMachineServiceGetResponse {
+  VirtualMachine vm = 1;
 }
 
 message VirtualMachineServiceListRequest {
@@ -65,6 +66,7 @@ message VirtualMachineServiceCreateRequest {
   string memory = 4;
   repeated string storage = 5;
   string boot = 6;
+  string cloud_init = 7;
 }
 
 message VirtualMachineServiceCreateResponse {

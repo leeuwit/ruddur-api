@@ -371,6 +371,30 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
+    /ruddur.v1.VirtualMachineService/Get:
+        post:
+            tags:
+                - VirtualMachineService
+            operationId: VirtualMachineService_Get
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/VirtualMachineServiceGetRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/VirtualMachineServiceGetResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
     /ruddur.v1.VirtualMachineService/List:
         post:
             tags:
@@ -389,30 +413,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/VirtualMachineServiceListResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /ruddur.v1.VirtualMachineService/Status:
-        post:
-            tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_Status
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/VirtualMachineServiceStatusRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceStatusResponse'
                 default:
                     description: Default error response
                     content:
@@ -680,6 +680,8 @@ components:
                         type: string
                 boot:
                     type: string
+                cloudInit:
+                    type: string
         VirtualMachineServiceCreateRequest:
             type: object
             properties:
@@ -696,6 +698,8 @@ components:
                     items:
                         type: string
                 boot:
+                    type: string
+                cloudInit:
                     type: string
         VirtualMachineServiceCreateResponse:
             type: object
@@ -718,6 +722,18 @@ components:
                     type: string
                 message:
                     type: string
+        VirtualMachineServiceGetRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
+        VirtualMachineServiceGetResponse:
+            type: object
+            properties:
+                vm:
+                    $ref: '#/components/schemas/VirtualMachine'
         VirtualMachineServiceListRequest:
             type: object
             properties:
@@ -730,18 +746,6 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/VirtualMachine'
-        VirtualMachineServiceStatusRequest:
-            type: object
-            properties:
-                project:
-                    type: string
-                name:
-                    type: string
-        VirtualMachineServiceStatusResponse:
-            type: object
-            properties:
-                status:
-                    type: string
     securitySchemes:
         openId:
             type: openIdConnect

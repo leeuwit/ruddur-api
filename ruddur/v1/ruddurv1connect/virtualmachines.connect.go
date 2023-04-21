@@ -33,9 +33,9 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// VirtualMachineServiceStatusProcedure is the fully-qualified name of the VirtualMachineService's
-	// Status RPC.
-	VirtualMachineServiceStatusProcedure = "/ruddur.v1.VirtualMachineService/Status"
+	// VirtualMachineServiceGetProcedure is the fully-qualified name of the VirtualMachineService's Get
+	// RPC.
+	VirtualMachineServiceGetProcedure = "/ruddur.v1.VirtualMachineService/Get"
 	// VirtualMachineServiceListProcedure is the fully-qualified name of the VirtualMachineService's
 	// List RPC.
 	VirtualMachineServiceListProcedure = "/ruddur.v1.VirtualMachineService/List"
@@ -49,7 +49,7 @@ const (
 
 // VirtualMachineServiceClient is a client for the ruddur.v1.VirtualMachineService service.
 type VirtualMachineServiceClient interface {
-	Status(context.Context, *connect_go.Request[v1.VirtualMachineServiceStatusRequest]) (*connect_go.ServerStreamForClient[v1.VirtualMachineServiceStatusResponse], error)
+	Get(context.Context, *connect_go.Request[v1.VirtualMachineServiceGetRequest]) (*connect_go.ServerStreamForClient[v1.VirtualMachineServiceGetResponse], error)
 	List(context.Context, *connect_go.Request[v1.VirtualMachineServiceListRequest]) (*connect_go.Response[v1.VirtualMachineServiceListResponse], error)
 	Create(context.Context, *connect_go.Request[v1.VirtualMachineServiceCreateRequest]) (*connect_go.Response[v1.VirtualMachineServiceCreateResponse], error)
 	Delete(context.Context, *connect_go.Request[v1.VirtualMachineServiceDeleteRequest]) (*connect_go.Response[v1.VirtualMachineServiceDeleteResponse], error)
@@ -65,9 +65,9 @@ type VirtualMachineServiceClient interface {
 func NewVirtualMachineServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) VirtualMachineServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &virtualMachineServiceClient{
-		status: connect_go.NewClient[v1.VirtualMachineServiceStatusRequest, v1.VirtualMachineServiceStatusResponse](
+		get: connect_go.NewClient[v1.VirtualMachineServiceGetRequest, v1.VirtualMachineServiceGetResponse](
 			httpClient,
-			baseURL+VirtualMachineServiceStatusProcedure,
+			baseURL+VirtualMachineServiceGetProcedure,
 			opts...,
 		),
 		list: connect_go.NewClient[v1.VirtualMachineServiceListRequest, v1.VirtualMachineServiceListResponse](
@@ -90,15 +90,15 @@ func NewVirtualMachineServiceClient(httpClient connect_go.HTTPClient, baseURL st
 
 // virtualMachineServiceClient implements VirtualMachineServiceClient.
 type virtualMachineServiceClient struct {
-	status *connect_go.Client[v1.VirtualMachineServiceStatusRequest, v1.VirtualMachineServiceStatusResponse]
+	get    *connect_go.Client[v1.VirtualMachineServiceGetRequest, v1.VirtualMachineServiceGetResponse]
 	list   *connect_go.Client[v1.VirtualMachineServiceListRequest, v1.VirtualMachineServiceListResponse]
 	create *connect_go.Client[v1.VirtualMachineServiceCreateRequest, v1.VirtualMachineServiceCreateResponse]
 	delete *connect_go.Client[v1.VirtualMachineServiceDeleteRequest, v1.VirtualMachineServiceDeleteResponse]
 }
 
-// Status calls ruddur.v1.VirtualMachineService.Status.
-func (c *virtualMachineServiceClient) Status(ctx context.Context, req *connect_go.Request[v1.VirtualMachineServiceStatusRequest]) (*connect_go.ServerStreamForClient[v1.VirtualMachineServiceStatusResponse], error) {
-	return c.status.CallServerStream(ctx, req)
+// Get calls ruddur.v1.VirtualMachineService.Get.
+func (c *virtualMachineServiceClient) Get(ctx context.Context, req *connect_go.Request[v1.VirtualMachineServiceGetRequest]) (*connect_go.ServerStreamForClient[v1.VirtualMachineServiceGetResponse], error) {
+	return c.get.CallServerStream(ctx, req)
 }
 
 // List calls ruddur.v1.VirtualMachineService.List.
@@ -118,7 +118,7 @@ func (c *virtualMachineServiceClient) Delete(ctx context.Context, req *connect_g
 
 // VirtualMachineServiceHandler is an implementation of the ruddur.v1.VirtualMachineService service.
 type VirtualMachineServiceHandler interface {
-	Status(context.Context, *connect_go.Request[v1.VirtualMachineServiceStatusRequest], *connect_go.ServerStream[v1.VirtualMachineServiceStatusResponse]) error
+	Get(context.Context, *connect_go.Request[v1.VirtualMachineServiceGetRequest], *connect_go.ServerStream[v1.VirtualMachineServiceGetResponse]) error
 	List(context.Context, *connect_go.Request[v1.VirtualMachineServiceListRequest]) (*connect_go.Response[v1.VirtualMachineServiceListResponse], error)
 	Create(context.Context, *connect_go.Request[v1.VirtualMachineServiceCreateRequest]) (*connect_go.Response[v1.VirtualMachineServiceCreateResponse], error)
 	Delete(context.Context, *connect_go.Request[v1.VirtualMachineServiceDeleteRequest]) (*connect_go.Response[v1.VirtualMachineServiceDeleteResponse], error)
@@ -131,9 +131,9 @@ type VirtualMachineServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewVirtualMachineServiceHandler(svc VirtualMachineServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
 	mux := http.NewServeMux()
-	mux.Handle(VirtualMachineServiceStatusProcedure, connect_go.NewServerStreamHandler(
-		VirtualMachineServiceStatusProcedure,
-		svc.Status,
+	mux.Handle(VirtualMachineServiceGetProcedure, connect_go.NewServerStreamHandler(
+		VirtualMachineServiceGetProcedure,
+		svc.Get,
 		opts...,
 	))
 	mux.Handle(VirtualMachineServiceListProcedure, connect_go.NewUnaryHandler(
@@ -157,8 +157,8 @@ func NewVirtualMachineServiceHandler(svc VirtualMachineServiceHandler, opts ...c
 // UnimplementedVirtualMachineServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedVirtualMachineServiceHandler struct{}
 
-func (UnimplementedVirtualMachineServiceHandler) Status(context.Context, *connect_go.Request[v1.VirtualMachineServiceStatusRequest], *connect_go.ServerStream[v1.VirtualMachineServiceStatusResponse]) error {
-	return connect_go.NewError(connect_go.CodeUnimplemented, errors.New("ruddur.v1.VirtualMachineService.Status is not implemented"))
+func (UnimplementedVirtualMachineServiceHandler) Get(context.Context, *connect_go.Request[v1.VirtualMachineServiceGetRequest], *connect_go.ServerStream[v1.VirtualMachineServiceGetResponse]) error {
+	return connect_go.NewError(connect_go.CodeUnimplemented, errors.New("ruddur.v1.VirtualMachineService.Get is not implemented"))
 }
 
 func (UnimplementedVirtualMachineServiceHandler) List(context.Context, *connect_go.Request[v1.VirtualMachineServiceListRequest]) (*connect_go.Response[v1.VirtualMachineServiceListResponse], error) {
