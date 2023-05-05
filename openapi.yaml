@@ -525,6 +525,14 @@ components:
                 amount:
                     type: integer
                     format: int32
+                description:
+                    type: string
+                cpu:
+                    type: string
+                memory:
+                    type: string
+                storage:
+                    type: string
         ProjectServiceAuthorizeRequest:
             type: object
             properties:
