@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package ruddur.v1;
+
+import "google/api/annotations.proto";
+
+// The physical machines service definition.
+service PhysicalMachineService {
+  rpc ListAvailable(PhysicalMachineServiceListAvailableRequest) returns (PhysicalMachineServiceListAvailableResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.MachineService/ListAvailable"
+      body: "*"
+    };
+  };
+}
+
+message PhysicalMachineSet {
+  string id = 1;
+  int32 amount = 2;
+}
+
+message PhysicalMachineServiceListAvailableRequest {
+}
+
+message PhysicalMachineServiceListAvailableResponse {
+  repeated PhysicalMachineSet machines = 1;
+}

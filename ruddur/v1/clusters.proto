@@ -39,18 +39,29 @@ message Cluster {
   string url = 3;
 }
 
+message ClusterPhysicalMachine {
+  string id = 1;
+}
+
 message ClusterVirtualMachine {
-  string cpu = 4;
-  string memory = 5;
-  string storage = 6;
+  string cpu = 1;
+  string memory = 2;
+  string storage = 3;
+}
+
+enum ClusterMachineRole {
+  CLUSTER_MACHINE_ROLE_UNSPECIFIED = 0;
+  CLUSTER_MACHINE_ROLE_CONTROL_PLANE = 1;
+  CLUSTER_MACHINE_ROLE_WORKER = 2;
 }
 
 message ClusterMachineSet {
-  oneof machine {
-    string type = 1;
-    ClusterVirtualMachine virtual = 2;
+  ClusterMachineRole role = 1;
+  int32 amount = 2;
+  oneof type {
+    ClusterPhysicalMachine physical = 3;
+    ClusterVirtualMachine virtual = 4;
   }
-  int32 amount = 3;
 }
 
 message ClusterServiceListRequest {
@@ -64,8 +75,7 @@ message ClusterServiceListResponse {
 message ClusterServiceCreateRequest {
   string project = 1;
   string name = 2;
-  ClusterMachineSet control_plane_nodes = 3;
-  repeated ClusterMachineSet worker_nodes = 4;
+  repeated ClusterMachineSet nodes = 3;
 }
 
 message ClusterServiceCreateResponse {

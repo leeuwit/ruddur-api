@@ -110,13 +110,13 @@ paths:
     /ruddur.v1.MachineService/ListAvailable:
         post:
             tags:
-                - MachineService
-            operationId: MachineService_ListAvailable
+                - PhysicalMachineService
+            operationId: PhysicalMachineService_ListAvailable
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/MachineServiceListAvailableRequest'
+                            $ref: '#/components/schemas/PhysicalMachineServiceListAvailableRequest'
                 required: true
             responses:
                 "200":
@@ -124,31 +124,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/MachineServiceListAvailableResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /ruddur.v1.MachineService/ListTypes:
-        post:
-            tags:
-                - MachineService
-            operationId: MachineService_ListTypes
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/MachineServiceListTypesRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/MachineServiceListTypesResponse'
+                                $ref: '#/components/schemas/PhysicalMachineServiceListAvailableResponse'
                 default:
                     description: Default error response
                     content:
@@ -433,13 +409,21 @@ components:
         ClusterMachineSet:
             type: object
             properties:
-                type:
-                    type: string
-                virtual:
-                    $ref: '#/components/schemas/ClusterVirtualMachine'
+                role:
+                    type: integer
+                    format: enum
                 amount:
                     type: integer
                     format: int32
+                physical:
+                    $ref: '#/components/schemas/ClusterPhysicalMachine'
+                virtual:
+                    $ref: '#/components/schemas/ClusterVirtualMachine'
+        ClusterPhysicalMachine:
+            type: object
+            properties:
+                id:
+                    type: string
         ClusterServiceCreateRequest:
             type: object
             properties:
@@ -447,9 +431,7 @@ components:
                     type: string
                 name:
                     type: string
-                controlPlaneNodes:
-                    $ref: '#/components/schemas/ClusterMachineSet'
-                workerNodes:
+                nodes:
                     type: array
                     items:
                         $ref: '#/components/schemas/ClusterMachineSet'
@@ -525,30 +507,20 @@ components:
                     description: The type of the serialized message.
             additionalProperties: true
             description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-        MachineServiceListAvailableRequest:
+        PhysicalMachineServiceListAvailableRequest:
             type: object
             properties: {}
-        MachineServiceListAvailableResponse:
+        PhysicalMachineServiceListAvailableResponse:
             type: object
             properties:
                 machines:
                     type: array
                     items:
-                        $ref: '#/components/schemas/MachineTypeAndAmount'
-        MachineServiceListTypesRequest:
-            type: object
-            properties: {}
-        MachineServiceListTypesResponse:
+                        $ref: '#/components/schemas/PhysicalMachineSet'
+        PhysicalMachineSet:
             type: object
             properties:
-                types:
-                    type: array
-                    items:
-                        type: string
-        MachineTypeAndAmount:
-            type: object
-            properties:
-                type:
+                id:
                     type: string
                 amount:
                     type: integer
@@ -755,8 +727,8 @@ security:
 tags:
     - name: ClusterService
       description: The clusters service definition.
-    - name: MachineService
-      description: The machines service definition.
+    - name: PhysicalMachineService
+      description: The physical machines service definition.
     - name: ProjectService
       description: The project service definition.
     - name: VirtualMachineService
