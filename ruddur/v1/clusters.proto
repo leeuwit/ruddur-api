@@ -39,16 +39,6 @@ message Cluster {
   string url = 3;
 }
 
-message ClusterPhysicalMachine {
-  string id = 1;
-}
-
-message ClusterVirtualMachine {
-  string cpu = 1;
-  string memory = 2;
-  string storage = 3;
-}
-
 enum ClusterMachineRole {
   CLUSTER_MACHINE_ROLE_UNSPECIFIED = 0;
   CLUSTER_MACHINE_ROLE_CONTROL_PLANE = 1;
@@ -58,10 +48,10 @@ enum ClusterMachineRole {
 message ClusterMachineSet {
   ClusterMachineRole role = 1;
   int32 amount = 2;
-  oneof type {
-    ClusterPhysicalMachine physical = 3;
-    ClusterVirtualMachine virtual = 4;
-  }
+  string id = 3; // Should be 'virtual' for VMs.
+  string cpu = 4;
+  string memory = 5;
+  string storage = 6;
 }
 
 message ClusterServiceListRequest {

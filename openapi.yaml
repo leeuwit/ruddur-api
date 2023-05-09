@@ -415,14 +415,13 @@ components:
                 amount:
                     type: integer
                     format: int32
-                physical:
-                    $ref: '#/components/schemas/ClusterPhysicalMachine'
-                virtual:
-                    $ref: '#/components/schemas/ClusterVirtualMachine'
-        ClusterPhysicalMachine:
-            type: object
-            properties:
                 id:
+                    type: string
+                cpu:
+                    type: string
+                memory:
+                    type: string
+                storage:
                     type: string
         ClusterServiceCreateRequest:
             type: object
@@ -483,15 +482,6 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/Cluster'
-        ClusterVirtualMachine:
-            type: object
-            properties:
-                cpu:
-                    type: string
-                memory:
-                    type: string
-                storage:
-                    type: string
         EmailAndRole:
             type: object
             properties:
