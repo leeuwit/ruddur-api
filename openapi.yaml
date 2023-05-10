@@ -107,16 +107,16 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /ruddur.v1.MachineService/ListAvailable:
+    /ruddur.v1.MachineService/Create:
         post:
             tags:
-                - PhysicalMachineService
-            operationId: PhysicalMachineService_ListAvailable
+                - MachineService
+            operationId: MachineService_Create
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PhysicalMachineServiceListAvailableRequest'
+                            $ref: '#/components/schemas/MachineServiceCreateRequest'
                 required: true
             responses:
                 "200":
@@ -124,7 +124,103 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PhysicalMachineServiceListAvailableResponse'
+                                $ref: '#/components/schemas/MachineServiceCreateResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.MachineService/Delete:
+        post:
+            tags:
+                - MachineService
+            operationId: MachineService_Delete
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/MachineServiceDeleteRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceDeleteResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.MachineService/Get:
+        post:
+            tags:
+                - MachineService
+            operationId: MachineService_Get
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/MachineServiceGetRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceGetResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.MachineService/List:
+        post:
+            tags:
+                - MachineService
+            operationId: MachineService_List
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/MachineServiceListRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /ruddur.v1.MachineService/ListAvailable:
+        post:
+            tags:
+                - MachineService
+            operationId: MachineService_ListAvailable
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/MachineServiceListAvailableRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MachineServiceListAvailableResponse'
                 default:
                     description: Default error response
                     content:
@@ -299,102 +395,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /ruddur.v1.VirtualMachineService/Create:
-        post:
-            tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_Create
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/VirtualMachineServiceCreateRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceCreateResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /ruddur.v1.VirtualMachineService/Delete:
-        post:
-            tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_Delete
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/VirtualMachineServiceDeleteRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceDeleteResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /ruddur.v1.VirtualMachineService/Get:
-        post:
-            tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_Get
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/VirtualMachineServiceGetRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceGetResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /ruddur.v1.VirtualMachineService/List:
-        post:
-            tags:
-                - VirtualMachineService
-            operationId: VirtualMachineService_List
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/VirtualMachineServiceListRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/VirtualMachineServiceListResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
 components:
     schemas:
         Cluster:
@@ -497,22 +497,33 @@ components:
                     description: The type of the serialized message.
             additionalProperties: true
             description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-        PhysicalMachineServiceListAvailableRequest:
-            type: object
-            properties: {}
-        PhysicalMachineServiceListAvailableResponse:
+        Machine:
             type: object
             properties:
-                machines:
+                name:
+                    type: string
+                status:
+                    type: string
+                id:
+                    type: string
+                cpu:
+                    type: string
+                memory:
+                    type: string
+                storage:
                     type: array
                     items:
-                        $ref: '#/components/schemas/PhysicalMachineSet'
-        PhysicalMachineSet:
+                        type: string
+                boot:
+                    type: string
+                cloudInit:
+                    type: string
+        MachineAvailability:
             type: object
             properties:
                 id:
                     type: string
-                amount:
+                available:
                     type: integer
                     format: int32
                 description:
@@ -522,7 +533,85 @@ components:
                 memory:
                     type: string
                 storage:
+                    type: array
+                    items:
+                        type: string
+        MachineServiceCreateRequest:
+            type: object
+            properties:
+                project:
                     type: string
+                name:
+                    type: string
+                id:
+                    type: string
+                cpu:
+                    type: string
+                memory:
+                    type: string
+                storage:
+                    type: array
+                    items:
+                        type: string
+                boot:
+                    type: string
+                cloudInit:
+                    type: string
+        MachineServiceCreateResponse:
+            type: object
+            properties:
+                status:
+                    type: string
+                message:
+                    type: string
+        MachineServiceDeleteRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
+        MachineServiceDeleteResponse:
+            type: object
+            properties:
+                status:
+                    type: string
+                message:
+                    type: string
+        MachineServiceGetRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+                name:
+                    type: string
+        MachineServiceGetResponse:
+            type: object
+            properties:
+                machine:
+                    $ref: '#/components/schemas/Machine'
+        MachineServiceListAvailableRequest:
+            type: object
+            properties: {}
+        MachineServiceListAvailableResponse:
+            type: object
+            properties:
+                machines:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/MachineAvailability'
+        MachineServiceListRequest:
+            type: object
+            properties:
+                project:
+                    type: string
+        MachineServiceListResponse:
+            type: object
+            properties:
+                machines:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Machine'
         ProjectServiceAuthorizeRequest:
             type: object
             properties:
@@ -633,89 +722,6 @@ components:
                         $ref: '#/components/schemas/GoogleProtobufAny'
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
             description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
-        VirtualMachine:
-            type: object
-            properties:
-                name:
-                    type: string
-                status:
-                    type: string
-                cpu:
-                    type: string
-                memory:
-                    type: string
-                storage:
-                    type: array
-                    items:
-                        type: string
-                boot:
-                    type: string
-                cloudInit:
-                    type: string
-        VirtualMachineServiceCreateRequest:
-            type: object
-            properties:
-                project:
-                    type: string
-                name:
-                    type: string
-                cpu:
-                    type: string
-                memory:
-                    type: string
-                storage:
-                    type: array
-                    items:
-                        type: string
-                boot:
-                    type: string
-                cloudInit:
-                    type: string
-        VirtualMachineServiceCreateResponse:
-            type: object
-            properties:
-                status:
-                    type: string
-                message:
-                    type: string
-        VirtualMachineServiceDeleteRequest:
-            type: object
-            properties:
-                project:
-                    type: string
-                name:
-                    type: string
-        VirtualMachineServiceDeleteResponse:
-            type: object
-            properties:
-                status:
-                    type: string
-                message:
-                    type: string
-        VirtualMachineServiceGetRequest:
-            type: object
-            properties:
-                project:
-                    type: string
-                name:
-                    type: string
-        VirtualMachineServiceGetResponse:
-            type: object
-            properties:
-                vm:
-                    $ref: '#/components/schemas/VirtualMachine'
-        VirtualMachineServiceListRequest:
-            type: object
-            properties:
-                project:
-                    type: string
-        VirtualMachineServiceListResponse:
-            type: object
-            properties:
-                vms:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/VirtualMachine'
     securitySchemes:
         openId:
             type: openIdConnect
@@ -724,10 +730,8 @@ security:
     - openId: []
 tags:
     - name: ClusterService
-      description: The clusters service definition.
-    - name: PhysicalMachineService
-      description: The physical machines service definition.
+      description: The cluster service definition.
+    - name: MachineService
+      description: The machine service definition.
     - name: ProjectService
       description: The project service definition.
-    - name: VirtualMachineService
-      description: The virtual machines service definition.

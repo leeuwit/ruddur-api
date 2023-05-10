@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package ruddur.v1;
+
+import "google/api/annotations.proto";
+
+// The machine service definition.
+service MachineService {
+  rpc Get(MachineServiceGetRequest) returns (stream MachineServiceGetResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.MachineService/Get"
+      body: "*"
+    };
+  };
+  rpc List(MachineServiceListRequest) returns (MachineServiceListResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.MachineService/List"
+      body: "*"
+    };
+  };
+  rpc Create(MachineServiceCreateRequest) returns (MachineServiceCreateResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.MachineService/Create"
+      body: "*"
+    };
+  };
+  rpc Delete(MachineServiceDeleteRequest) returns (MachineServiceDeleteResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.MachineService/Delete"
+      body: "*"
+    };
+  };
+  rpc ListAvailable(MachineServiceListAvailableRequest) returns (MachineServiceListAvailableResponse) {
+    option (google.api.http) = {
+      post: "/ruddur.v1.MachineService/ListAvailable"
+      body: "*"
+    };
+  };
+}
+
+message Machine {
+  string name = 1;
+  string status = 2;
+  string id = 3;
+  string cpu = 4;
+  string memory = 5;
+  repeated string storage = 6;
+  string boot = 7;
+  string cloud_init = 8;
+}
+
+message MachineServiceGetRequest {
+  string project = 1;
+  string name = 2;
+}
+
+message MachineServiceGetResponse {
+  Machine machine = 1;
+}
+
+message MachineServiceListRequest {
+  string project = 1;
+}
+
+message MachineServiceListResponse {
+  repeated Machine machines = 1;
+}
+
+message MachineServiceCreateRequest {
+  string project = 1;
+  string name = 2;
+  string id = 3;
+  string cpu = 4;
+  string memory = 5;
+  repeated string storage = 6;
+  string boot = 7;
+  string cloud_init = 8;
+}
+
+message MachineServiceCreateResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message MachineServiceDeleteRequest {
+  string project = 1;
+  string name = 2;
+}
+
+message MachineServiceDeleteResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message MachineAvailability {
+  string id = 1;
+  int32 available = 2;
+  string description = 3;
+  string cpu = 4;
+  string memory = 5;
+  repeated string storage = 6;
+}
+
+message MachineServiceListAvailableRequest {
+}
+
+message MachineServiceListAvailableResponse {
+  repeated MachineAvailability machines = 1;
+}

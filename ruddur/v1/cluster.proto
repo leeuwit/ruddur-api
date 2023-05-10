@@ -4,7 +4,7 @@ package ruddur.v1;
 
 import "google/api/annotations.proto";
 
-// The clusters service definition.
+// The cluster service definition.
 service ClusterService {
   rpc List(ClusterServiceListRequest) returns (ClusterServiceListResponse) {
     option (google.api.http) = {
