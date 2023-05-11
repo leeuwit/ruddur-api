@@ -725,7 +725,7 @@ components:
     securitySchemes:
         openId:
             type: openIdConnect
-            openIdConnectUrl: https://auth.ruddur.dev/.well-known/openid-configuration
+            openIdConnectUrl: https://auth.ruddur.dev/realms/master/.well-known/openid-configuration
 security:
     - openId: []
 tags:
