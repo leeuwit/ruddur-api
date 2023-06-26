@@ -18,12 +18,6 @@ service ProjectService {
       body: "*"
     };
   };
-  rpc Register(ProjectServiceRegisterRequest) returns (ProjectServiceRegisterResponse) {
-    option (google.api.http) = {
-      post: "/ruddur.v1.ProjectService/Register"
-      body: "*"
-    };
-  };
   rpc Create(ProjectServiceCreateRequest) returns (ProjectServiceCreateResponse) {
     option (google.api.http) = {
       post: "/ruddur.v1.ProjectService/Create"
@@ -78,22 +72,6 @@ message ProjectServiceGetResponse {
   string name = 1;
   // Authorized emails.
   repeated EmailAndRole emails = 2;
-}
-
-message ProjectServiceRegisterRequest {
-  // Name of the project, also used as the subdomain.
-  string name = 1;
-  // First name of contact person.
-  string first_name = 2;
-  // Last name of contact person.
-  string last_name = 3;
-  // Email address of contact person.
-  string email = 4;
-  // Company, optional.
-  string company = 5;
-}
-
-message ProjectServiceRegisterResponse {
 }
 
 message ProjectServiceCreateRequest {

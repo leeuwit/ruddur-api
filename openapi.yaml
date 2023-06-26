@@ -347,30 +347,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    /ruddur.v1.ProjectService/Register:
-        post:
-            tags:
-                - ProjectService
-            operationId: ProjectService_Register
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/ProjectServiceRegisterRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ProjectServiceRegisterResponse'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
     /ruddur.v1.ProjectService/Revoke:
         post:
             tags:
@@ -673,27 +649,6 @@ components:
                     items:
                         type: string
                     description: Names of the projects.
-        ProjectServiceRegisterRequest:
-            type: object
-            properties:
-                name:
-                    type: string
-                    description: Name of the project, also used as the subdomain.
-                firstName:
-                    type: string
-                    description: First name of contact person.
-                lastName:
-                    type: string
-                    description: Last name of contact person.
-                email:
-                    type: string
-                    description: Email address of contact person.
-                company:
-                    type: string
-                    description: Company, optional.
-        ProjectServiceRegisterResponse:
-            type: object
-            properties: {}
         ProjectServiceRevokeRequest:
             type: object
             properties:

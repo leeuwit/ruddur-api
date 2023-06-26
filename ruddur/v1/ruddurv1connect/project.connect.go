@@ -37,8 +37,6 @@ const (
 	ProjectServiceListProcedure = "/ruddur.v1.ProjectService/List"
 	// ProjectServiceGetProcedure is the fully-qualified name of the ProjectService's Get RPC.
 	ProjectServiceGetProcedure = "/ruddur.v1.ProjectService/Get"
-	// ProjectServiceRegisterProcedure is the fully-qualified name of the ProjectService's Register RPC.
-	ProjectServiceRegisterProcedure = "/ruddur.v1.ProjectService/Register"
 	// ProjectServiceCreateProcedure is the fully-qualified name of the ProjectService's Create RPC.
 	ProjectServiceCreateProcedure = "/ruddur.v1.ProjectService/Create"
 	// ProjectServiceDeleteProcedure is the fully-qualified name of the ProjectService's Delete RPC.
@@ -54,7 +52,6 @@ const (
 type ProjectServiceClient interface {
 	List(context.Context, *connect_go.Request[v1.ProjectServiceListRequest]) (*connect_go.Response[v1.ProjectServiceListResponse], error)
 	Get(context.Context, *connect_go.Request[v1.ProjectServiceGetRequest]) (*connect_go.Response[v1.ProjectServiceGetResponse], error)
-	Register(context.Context, *connect_go.Request[v1.ProjectServiceRegisterRequest]) (*connect_go.Response[v1.ProjectServiceRegisterResponse], error)
 	Create(context.Context, *connect_go.Request[v1.ProjectServiceCreateRequest]) (*connect_go.Response[v1.ProjectServiceCreateResponse], error)
 	Delete(context.Context, *connect_go.Request[v1.ProjectServiceDeleteRequest]) (*connect_go.Response[v1.ProjectServiceDeleteResponse], error)
 	Authorize(context.Context, *connect_go.Request[v1.ProjectServiceAuthorizeRequest]) (*connect_go.Response[v1.ProjectServiceAuthorizeResponse], error)
@@ -79,11 +76,6 @@ func NewProjectServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 		get: connect_go.NewClient[v1.ProjectServiceGetRequest, v1.ProjectServiceGetResponse](
 			httpClient,
 			baseURL+ProjectServiceGetProcedure,
-			opts...,
-		),
-		register: connect_go.NewClient[v1.ProjectServiceRegisterRequest, v1.ProjectServiceRegisterResponse](
-			httpClient,
-			baseURL+ProjectServiceRegisterProcedure,
 			opts...,
 		),
 		create: connect_go.NewClient[v1.ProjectServiceCreateRequest, v1.ProjectServiceCreateResponse](
@@ -113,7 +105,6 @@ func NewProjectServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 type projectServiceClient struct {
 	list      *connect_go.Client[v1.ProjectServiceListRequest, v1.ProjectServiceListResponse]
 	get       *connect_go.Client[v1.ProjectServiceGetRequest, v1.ProjectServiceGetResponse]
-	register  *connect_go.Client[v1.ProjectServiceRegisterRequest, v1.ProjectServiceRegisterResponse]
 	create    *connect_go.Client[v1.ProjectServiceCreateRequest, v1.ProjectServiceCreateResponse]
 	delete    *connect_go.Client[v1.ProjectServiceDeleteRequest, v1.ProjectServiceDeleteResponse]
 	authorize *connect_go.Client[v1.ProjectServiceAuthorizeRequest, v1.ProjectServiceAuthorizeResponse]
@@ -128,11 +119,6 @@ func (c *projectServiceClient) List(ctx context.Context, req *connect_go.Request
 // Get calls ruddur.v1.ProjectService.Get.
 func (c *projectServiceClient) Get(ctx context.Context, req *connect_go.Request[v1.ProjectServiceGetRequest]) (*connect_go.Response[v1.ProjectServiceGetResponse], error) {
 	return c.get.CallUnary(ctx, req)
-}
-
-// Register calls ruddur.v1.ProjectService.Register.
-func (c *projectServiceClient) Register(ctx context.Context, req *connect_go.Request[v1.ProjectServiceRegisterRequest]) (*connect_go.Response[v1.ProjectServiceRegisterResponse], error) {
-	return c.register.CallUnary(ctx, req)
 }
 
 // Create calls ruddur.v1.ProjectService.Create.
@@ -159,7 +145,6 @@ func (c *projectServiceClient) Revoke(ctx context.Context, req *connect_go.Reque
 type ProjectServiceHandler interface {
 	List(context.Context, *connect_go.Request[v1.ProjectServiceListRequest]) (*connect_go.Response[v1.ProjectServiceListResponse], error)
 	Get(context.Context, *connect_go.Request[v1.ProjectServiceGetRequest]) (*connect_go.Response[v1.ProjectServiceGetResponse], error)
-	Register(context.Context, *connect_go.Request[v1.ProjectServiceRegisterRequest]) (*connect_go.Response[v1.ProjectServiceRegisterResponse], error)
 	Create(context.Context, *connect_go.Request[v1.ProjectServiceCreateRequest]) (*connect_go.Response[v1.ProjectServiceCreateResponse], error)
 	Delete(context.Context, *connect_go.Request[v1.ProjectServiceDeleteRequest]) (*connect_go.Response[v1.ProjectServiceDeleteResponse], error)
 	Authorize(context.Context, *connect_go.Request[v1.ProjectServiceAuthorizeRequest]) (*connect_go.Response[v1.ProjectServiceAuthorizeResponse], error)
@@ -181,11 +166,6 @@ func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect_go.Hand
 	mux.Handle(ProjectServiceGetProcedure, connect_go.NewUnaryHandler(
 		ProjectServiceGetProcedure,
 		svc.Get,
-		opts...,
-	))
-	mux.Handle(ProjectServiceRegisterProcedure, connect_go.NewUnaryHandler(
-		ProjectServiceRegisterProcedure,
-		svc.Register,
 		opts...,
 	))
 	mux.Handle(ProjectServiceCreateProcedure, connect_go.NewUnaryHandler(
@@ -220,10 +200,6 @@ func (UnimplementedProjectServiceHandler) List(context.Context, *connect_go.Requ
 
 func (UnimplementedProjectServiceHandler) Get(context.Context, *connect_go.Request[v1.ProjectServiceGetRequest]) (*connect_go.Response[v1.ProjectServiceGetResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("ruddur.v1.ProjectService.Get is not implemented"))
-}
-
-func (UnimplementedProjectServiceHandler) Register(context.Context, *connect_go.Request[v1.ProjectServiceRegisterRequest]) (*connect_go.Response[v1.ProjectServiceRegisterResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("ruddur.v1.ProjectService.Register is not implemented"))
 }
 
 func (UnimplementedProjectServiceHandler) Create(context.Context, *connect_go.Request[v1.ProjectServiceCreateRequest]) (*connect_go.Response[v1.ProjectServiceCreateResponse], error) {
