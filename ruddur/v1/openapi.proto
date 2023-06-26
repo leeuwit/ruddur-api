@@ -23,7 +23,7 @@ option (gnostic.openapi.v3.document) = {
           value: {
             security_scheme: {
               type: "openIdConnect";
-              open_id_connect_url: "https://auth.ruddur.dev/realms/master/.well-known/openid-configuration";
+              open_id_connect_url: "https://auth.alpha.ruddur.dev/realms/master/.well-known/openid-configuration";
             }
           }
         }
