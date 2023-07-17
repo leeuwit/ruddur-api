@@ -157,38 +157,54 @@ type ProjectServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(ProjectServiceListProcedure, connect_go.NewUnaryHandler(
+	projectServiceListHandler := connect_go.NewUnaryHandler(
 		ProjectServiceListProcedure,
 		svc.List,
 		opts...,
-	))
-	mux.Handle(ProjectServiceGetProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceGetHandler := connect_go.NewUnaryHandler(
 		ProjectServiceGetProcedure,
 		svc.Get,
 		opts...,
-	))
-	mux.Handle(ProjectServiceCreateProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceCreateHandler := connect_go.NewUnaryHandler(
 		ProjectServiceCreateProcedure,
 		svc.Create,
 		opts...,
-	))
-	mux.Handle(ProjectServiceDeleteProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceDeleteHandler := connect_go.NewUnaryHandler(
 		ProjectServiceDeleteProcedure,
 		svc.Delete,
 		opts...,
-	))
-	mux.Handle(ProjectServiceAuthorizeProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceAuthorizeHandler := connect_go.NewUnaryHandler(
 		ProjectServiceAuthorizeProcedure,
 		svc.Authorize,
 		opts...,
-	))
-	mux.Handle(ProjectServiceRevokeProcedure, connect_go.NewUnaryHandler(
+	)
+	projectServiceRevokeHandler := connect_go.NewUnaryHandler(
 		ProjectServiceRevokeProcedure,
 		svc.Revoke,
 		opts...,
-	))
-	return "/ruddur.v1.ProjectService/", mux
+	)
+	return "/ruddur.v1.ProjectService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case ProjectServiceListProcedure:
+			projectServiceListHandler.ServeHTTP(w, r)
+		case ProjectServiceGetProcedure:
+			projectServiceGetHandler.ServeHTTP(w, r)
+		case ProjectServiceCreateProcedure:
+			projectServiceCreateHandler.ServeHTTP(w, r)
+		case ProjectServiceDeleteProcedure:
+			projectServiceDeleteHandler.ServeHTTP(w, r)
+		case ProjectServiceAuthorizeProcedure:
+			projectServiceAuthorizeHandler.ServeHTTP(w, r)
+		case ProjectServiceRevokeProcedure:
+			projectServiceRevokeHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedProjectServiceHandler returns CodeUnimplemented from all methods.

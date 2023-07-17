@@ -129,28 +129,40 @@ type ClusterServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewClusterServiceHandler(svc ClusterServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(ClusterServiceListProcedure, connect_go.NewUnaryHandler(
+	clusterServiceListHandler := connect_go.NewUnaryHandler(
 		ClusterServiceListProcedure,
 		svc.List,
 		opts...,
-	))
-	mux.Handle(ClusterServiceCreateProcedure, connect_go.NewUnaryHandler(
+	)
+	clusterServiceCreateHandler := connect_go.NewUnaryHandler(
 		ClusterServiceCreateProcedure,
 		svc.Create,
 		opts...,
-	))
-	mux.Handle(ClusterServiceDeleteProcedure, connect_go.NewUnaryHandler(
+	)
+	clusterServiceDeleteHandler := connect_go.NewUnaryHandler(
 		ClusterServiceDeleteProcedure,
 		svc.Delete,
 		opts...,
-	))
-	mux.Handle(ClusterServiceKubeconfigProcedure, connect_go.NewUnaryHandler(
+	)
+	clusterServiceKubeconfigHandler := connect_go.NewUnaryHandler(
 		ClusterServiceKubeconfigProcedure,
 		svc.Kubeconfig,
 		opts...,
-	))
-	return "/ruddur.v1.ClusterService/", mux
+	)
+	return "/ruddur.v1.ClusterService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case ClusterServiceListProcedure:
+			clusterServiceListHandler.ServeHTTP(w, r)
+		case ClusterServiceCreateProcedure:
+			clusterServiceCreateHandler.ServeHTTP(w, r)
+		case ClusterServiceDeleteProcedure:
+			clusterServiceDeleteHandler.ServeHTTP(w, r)
+		case ClusterServiceKubeconfigProcedure:
+			clusterServiceKubeconfigHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedClusterServiceHandler returns CodeUnimplemented from all methods.

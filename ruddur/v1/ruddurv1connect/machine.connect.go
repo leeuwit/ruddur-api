@@ -142,33 +142,47 @@ type MachineServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewMachineServiceHandler(svc MachineServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	mux := http.NewServeMux()
-	mux.Handle(MachineServiceGetProcedure, connect_go.NewServerStreamHandler(
+	machineServiceGetHandler := connect_go.NewServerStreamHandler(
 		MachineServiceGetProcedure,
 		svc.Get,
 		opts...,
-	))
-	mux.Handle(MachineServiceListProcedure, connect_go.NewUnaryHandler(
+	)
+	machineServiceListHandler := connect_go.NewUnaryHandler(
 		MachineServiceListProcedure,
 		svc.List,
 		opts...,
-	))
-	mux.Handle(MachineServiceCreateProcedure, connect_go.NewUnaryHandler(
+	)
+	machineServiceCreateHandler := connect_go.NewUnaryHandler(
 		MachineServiceCreateProcedure,
 		svc.Create,
 		opts...,
-	))
-	mux.Handle(MachineServiceDeleteProcedure, connect_go.NewUnaryHandler(
+	)
+	machineServiceDeleteHandler := connect_go.NewUnaryHandler(
 		MachineServiceDeleteProcedure,
 		svc.Delete,
 		opts...,
-	))
-	mux.Handle(MachineServiceListAvailableProcedure, connect_go.NewUnaryHandler(
+	)
+	machineServiceListAvailableHandler := connect_go.NewUnaryHandler(
 		MachineServiceListAvailableProcedure,
 		svc.ListAvailable,
 		opts...,
-	))
-	return "/ruddur.v1.MachineService/", mux
+	)
+	return "/ruddur.v1.MachineService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case MachineServiceGetProcedure:
+			machineServiceGetHandler.ServeHTTP(w, r)
+		case MachineServiceListProcedure:
+			machineServiceListHandler.ServeHTTP(w, r)
+		case MachineServiceCreateProcedure:
+			machineServiceCreateHandler.ServeHTTP(w, r)
+		case MachineServiceDeleteProcedure:
+			machineServiceDeleteHandler.ServeHTTP(w, r)
+		case MachineServiceListAvailableProcedure:
+			machineServiceListAvailableHandler.ServeHTTP(w, r)
+		default:
+			http.NotFound(w, r)
+		}
+	})
 }
 
 // UnimplementedMachineServiceHandler returns CodeUnimplemented from all methods.
