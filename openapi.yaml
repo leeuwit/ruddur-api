@@ -494,6 +494,10 @@ components:
                     type: string
                 cloudInit:
                     type: string
+                addresses:
+                    type: array
+                    items:
+                        type: string
         MachineAvailability:
             type: object
             properties:
@@ -536,8 +540,6 @@ components:
         MachineServiceCreateResponse:
             type: object
             properties:
-                status:
-                    type: string
                 message:
                     type: string
         MachineServiceDeleteRequest:
@@ -550,8 +552,6 @@ components:
         MachineServiceDeleteResponse:
             type: object
             properties:
-                status:
-                    type: string
                 message:
                     type: string
         MachineServiceGetRequest:

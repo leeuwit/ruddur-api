@@ -47,6 +47,7 @@ message Machine {
   repeated string storage = 6;
   string boot = 7;
   string cloud_init = 8;
+  repeated string addresses = 9;
 }
 
 message MachineServiceGetRequest {
@@ -78,8 +79,7 @@ message MachineServiceCreateRequest {
 }
 
 message MachineServiceCreateResponse {
-  string status = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message MachineServiceDeleteRequest {
@@ -88,8 +88,7 @@ message MachineServiceDeleteRequest {
 }
 
 message MachineServiceDeleteResponse {
-  string status = 1;
-  string message = 2;
+  string message = 1;
 }
 
 message MachineAvailability {
